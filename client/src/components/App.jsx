@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,8 +12,8 @@ import Intro from './Intro';
 import Details from './Details';
 import History from './History';
 
-// import './App.scss';
-import { useState } from 'react';
+import './App.scss'
+
 
 function App() {
   const [user, setUser] = useState(null)
