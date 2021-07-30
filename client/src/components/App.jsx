@@ -1,12 +1,17 @@
 import {
   BrowserRouter as Router,
-  Link,
   Route,
   Switch
 } from 'react-router-dom';
 import axios from 'axios'
 
-import './App.scss';
+import Nav from './Nav';
+import Home from './Home';
+import Intro from './Intro';
+import Details from './Details';
+import History from './History';
+
+// import './App.scss';
 import { useState } from 'react';
 
 function App() {
@@ -22,6 +27,7 @@ function App() {
     <Router>
       <div className="App">
         <header>
+          <Nav />
           <button onClick={() => superBasicLoginYeah(1)}>Login as user 1</button>
           <button onClick={() => superBasicLoginYeah(2)}>Login as user 2</button>
           <button onClick={() => superBasicLoginYeah(3)}>Login as user 3</button>
@@ -29,20 +35,21 @@ function App() {
         <main>
           <Switch>
             <Route path="/" exact>
-              <Home />
+              {user && <Home />}
+              {!user && <Intro />}
             </Route>
-            <Route path="/maps">
-              <Maps />
+            <Route path="/details">
+              <Details />
             </Route>
-            <Route path="/login">
+            <Route path="/history">
+              <History />
+            </Route>
+            {/* <Route path="/login">
               <Login />
             </Route>
             <Route path="/register">
               <Register />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard name={user.name} />
-            </Route>
+            </Route> */}
           </Switch>
         </main>
       </div>
