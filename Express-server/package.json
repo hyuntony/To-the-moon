@@ -7,9 +7,17 @@
     "dev": "nodemon"
   },
   "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "mongoose": "^5.13.5",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.14.7",
+    "dotenv": "^10.0.0"
   }
 }
