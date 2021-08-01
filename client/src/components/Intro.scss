@@ -1,3 +1,64 @@
-div {
-  color: blue;
+image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
+
+.input-container {
+  background: black;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px (black);
+  object-fit: contain;
+}
+
+.input-container > h1 {
+  color: white;
+  font-size: 100px;
+  margin-top: -100px;
+}
+
+.input-container > p {
+  margin-top: 10px;
+  color: white;
+  font-size: 40px;
+}
+
+.input-btns {
+  margin-top: 40px;
+}
+
+.input-btns .btn {
+  margin: 5px;
+}
+
+@media screen and (max-width: 960px) {
+  .input-container > h1 {
+    font-size: 60px;
+    margin-top: -150px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .input-container > h1 {
+    font-size: 40px;
+    margin-top: -100px;
+  }
+  .input-container > p {
+    font-size: 25px;
+  }
+  .btn-mobile {
+    display: block;
+    text-decoration: none;
+  }
+
+  .btn {
+    width: 100%;
+  }
 }

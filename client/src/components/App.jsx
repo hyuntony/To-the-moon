@@ -11,12 +11,13 @@ import Home from './Home';
 import Intro from './Intro';
 import Details from './Details';
 import History from './History';
+import About from './About';
 
 import './App.scss'
 
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(true)
 
   const superBasicLoginYeah = id => {
     axios
@@ -28,10 +29,7 @@ function App() {
     <Router>
       <div className="App">
         <header>
-          <Nav />
-          <button onClick={() => superBasicLoginYeah(1)}>Login as user 1</button>
-          <button onClick={() => superBasicLoginYeah(2)}>Login as user 2</button>
-          <button onClick={() => superBasicLoginYeah(3)}>Login as user 3</button>
+          <Nav loggedIn={user}/>
         </header>
         <main>
           <Switch>
@@ -44,6 +42,9 @@ function App() {
             </Route>
             <Route path="/history">
               <History />
+            </Route>
+            <Route path="/about">
+              <About />
             </Route>
             {/* <Route path="/login">
               <Login />
