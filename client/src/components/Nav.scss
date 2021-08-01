@@ -1,0 +1,19 @@
+.Nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: transparent;
+    border-color: black;
+    border-width: 3px;
+}
+.logo {
+    width: 50x;
+    height: 50px;
+}
+.right_nav {
+    display: flex;
+    flex-direction: row;
+}
+a {
+    text-decoration: none;
+}
