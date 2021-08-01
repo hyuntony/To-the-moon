@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./Button";
+import TextButtons from "./Universal/TextButtons";
 
 import "./Intro.scss";
 
@@ -9,13 +9,13 @@ const Intro = () => {
       <h1>To The Moon!</h1>
       <p>Insert motto/mission/slogan here</p>
       <div className="intro-btns">
-        <Button
+        <TextButtons
           className="btns"
           buttonStyle="btn--outline"
           buttonSize="btn--large"
         >
           GET STARTED
-        </Button>
+        </TextButtons>
       </div>
     </div>
   );

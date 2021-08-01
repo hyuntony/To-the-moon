@@ -7,7 +7,7 @@ image {
 }
 
 .input-container {
-  background: url("images/test-image.jpeg") center center/cover no-repeat;
+  background: black;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -36,10 +36,6 @@ image {
 
 .input-btns .btn {
   margin: 5px;
-}
-
-.fa-play-circle {
-  margin-left: 5px;
 }
 
 @media screen and (max-width: 960px) {
