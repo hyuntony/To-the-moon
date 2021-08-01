@@ -11,6 +11,7 @@ import Home from './Home';
 import Intro from './Intro';
 import Details from './Details';
 import History from './History';
+import About from './About';
 
 import './App.scss'
 
@@ -41,6 +42,9 @@ function App() {
             </Route>
             <Route path="/history">
               <History />
+            </Route>
+            <Route path="/about">
+              <About />
             </Route>
             {/* <Route path="/login">
               <Login />
