@@ -69,11 +69,11 @@ function Logout() {
                 className="nav-links-mobile"
                 onClick={closeMobileMenu}
               >
-                GET STARTED
+                Logout
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">GET STARTED</Button>}
+          {button && <Button buttonStyle="btn--outline">Logout</Button>}
         </div>
       </nav>
     </>
