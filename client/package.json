@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "finnhub": "^1.2.5",
     "sass": "^1.36.0",
     "sass-loader": "^10.1.1",
     "webpack": "^4.44.2"
