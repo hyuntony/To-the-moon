@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 import Nav from "./Nav";
+import Logout from "./Logout";
 import Home from "./Home";
 import Intro from "./Intro";
 import Details from "./Details";
@@ -26,12 +27,13 @@ function App() {
       <div className="App">
         <header>
           <Nav loggedIn={user} />
+          {/* <Logout loggedIn={user} /> */}
         </header>
         <main>
           <Switch>
             <Route path="/" exact>
-              {user && <Intro />}
               {!user && <Intro />}
+              {user && <Intro />}
             </Route>
             <Route path="/details">
               <Details />
