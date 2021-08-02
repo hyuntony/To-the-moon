@@ -15,7 +15,7 @@ import About from './About';
 
 import './App.scss'
 const finnhub = require('finnhub');
-const api_key = finhub.ApiClient.instance.authentications['api_key'];
+const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "<API_key>"
 const finnhubClient = new finnhub.DefaultApi()
 function App() {
