@@ -37,3 +37,36 @@
   cursor: pointer;
   color: red;
 }
+
+.portfolio-container {
+  display: flex;
+  margin: 50px;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+}
+
+.watchlist-container {
+  display: flex;
+  align-content: flex-end;
+}
+
+.fa-arrow-up {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.fa-arrow-up:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+.fa-arrow-down {
+  font-size: 20px;
+  margin-top: 5px;
+  color: white;
+}
+
+.fa-arrow-down:hover {
+  cursor: pointer;
+  color: blue;
+}
