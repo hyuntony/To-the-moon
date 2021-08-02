@@ -1,12 +1,4 @@
-image {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: -1;
-}
-
-.input-container {
+.intro-container {
   background: black;
   height: 100vh;
   width: 100%;
@@ -14,45 +6,49 @@ image {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 0 0 0 1000px (black);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   object-fit: contain;
 }
 
-.input-container > h1 {
+.intro-container > h1 {
   color: white;
   font-size: 100px;
   margin-top: -100px;
 }
 
-.input-container > p {
-  margin-top: 10px;
+.intro-container > p {
+  margin-top: 8px;
   color: white;
-  font-size: 40px;
+  font-size: 32px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-.input-btns {
-  margin-top: 40px;
+.intro-btns {
+  margin-top: 32px;
 }
 
-.input-btns .btn {
-  margin: 5px;
+.intro-btns .btn {
+  margin: 6px;
 }
 
 @media screen and (max-width: 960px) {
-  .input-container > h1 {
-    font-size: 60px;
+  .intro-container > h1 {
+    font-size: 70px;
     margin-top: -150px;
   }
 }
 
-@media screen and (max-width: 960px) {
-  .input-container > h1 {
-    font-size: 40px;
+@media screen and (max-width: 768px) {
+  .intro-container > h1 {
+    font-size: 50px;
     margin-top: -100px;
   }
-  .input-container > p {
-    font-size: 25px;
+
+  .intro-container > p {
+    font-size: 20px;
   }
+
   .btn-mobile {
     display: block;
     text-decoration: none;
