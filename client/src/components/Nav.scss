@@ -1,8 +1,8 @@
-.navbar {
+.navbar-container {
   background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   height: 80px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   font-size: 1.2rem;
   position: sticky;
@@ -10,18 +10,9 @@
   z-index: 999;
 }
 
-.navbar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  max-width: 1500px;
-}
-
 .navbar-logo {
   color: #fff;
   justify-self: start;
-  margin-left: 20px;
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;

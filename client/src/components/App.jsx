@@ -26,14 +26,14 @@ function App() {
     <Router>
       <div className="App">
         <header>
-          <Nav loggedIn={user} />
-          {/* <Logout loggedIn={user} /> */}
+          {/* <Nav loggedIn={user} /> */}
+          <Logout loggedIn={user} />
         </header>
         <main>
           <Switch>
             <Route path="/" exact>
               {!user && <Intro />}
-              {user && <Intro />}
+              {user && <Home />}
             </Route>
             <Route path="/details">
               <Details />
