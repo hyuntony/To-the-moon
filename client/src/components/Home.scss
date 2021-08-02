@@ -1,0 +1,39 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+
+  margin-right: 100px;
+  margin-left: 100px;
+  margin-top: 20px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: red;
+}
+
+.search-bar {
+  margin: 0 0.5rem 0 0.5rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+
+  color: white;
+  font-size: 20px;
+}
+
+.fa-search {
+  color: white;
+  padding-left: 10px;
+}
+
+.fa-times {
+  color: white;
+  padding-right: 10px;
+}
+
+.fa-times:hover {
+  cursor: pointer;
+  color: red;
+}
