@@ -1,0 +1,93 @@
+.details {
+    color: black;
+    font-size: 2em;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.details-breakdown {
+    display: flex;
+    flex-direction: column; 
+}
+.details p {
+    height: 100%;
+}
+.left {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px 25px 0px 25px
+}
+.left div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.left-left {
+    align-items: flex-start;
+}
+.left-right {
+    align-items: flex-end;
+}
+
+.right-left {
+    align-items: flex-start;
+}
+.right-right {
+    align-items: flex-end;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+     margin: 0px 25px 0px 25px;
+}
+.right div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.detail-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid black;
+}
+
+.details-breakdown img {
+    height: 100px;
+    width: 100px;
+}
+
+.details-desc {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+.details-desc-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.details-desc-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details-desc div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+}
+.details-desc p {
+   width: 80%;
+}
+.details-desc div p{
+  width:100%;
+  display: flex;
+  align-items: flex-end;
+}
