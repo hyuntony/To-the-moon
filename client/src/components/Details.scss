@@ -1,6 +1,6 @@
 .details-breakdown {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
 }
 .details h5 {
     height: 100%;
@@ -50,6 +50,35 @@
 }
 
 .details-breakdown img {
-    height: 200px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
+}
+
+.details-desc {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+.details-desc-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.details-desc-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details-desc div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+}
+.details-desc h3 {
+   width: 80%;
+}
+.details-desc div h3{
+  width:100%;
 }
