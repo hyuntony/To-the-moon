@@ -13,12 +13,22 @@ const Home = () => {
         <input class="search-bar" type="text" placeholder="Search..." />
         <div class="fa fa-times"></div>
       </div>
-      <div class="portfolio-container">
-        <div class="watchlist-container">
-          <i class="fas fa-arrow-up"></i>
+      <main class="main">
+        <section class="section watchlist">
+          <span>Watchlist</span>
           <i class="fas fa-arrow-down"></i>
-        </div>
-      </div>
+          <i class="fas fa-arrow-up"></i>
+        </section>
+        <section class="section portfolio">
+          <h1>Portfolio</h1>
+          <span>Total Balance:</span>
+          <span>Investments:</span>
+        </section>
+        <section class="section holdings">
+          <span>holdings</span>
+        </section>
+        <footer class="section footer">Footer</footer>
+      </main>
     </div>
   );
 };
