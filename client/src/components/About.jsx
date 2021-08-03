@@ -54,7 +54,7 @@ const About = () => {
           <div class="card">
             <img class="profile" src={profile} alt="Logo" />
             <div class="container">
-              <h2>Dexter GB</h2>
+              <h2>Dexter Glied</h2>
               <p class="title">Co-Founder</p>
               <p class="describe">
                 Some text that describes me lorem ipsum ipsum lorem.
