@@ -24,7 +24,7 @@ function App() {
 
   return (
     <Router>
-      <div classNameName="App">
+      <div className="App">
         <header>
           {/* <Nav loggedIn={user} /> */}
           <Logout loggedIn={user} />

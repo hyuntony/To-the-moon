@@ -14,7 +14,7 @@ export default function GetStartedButton() {
   const classNamees = useStyles();
 
   return (
-    <div classNameName={classNamees.root}>
+    <div className={classNamees.root}>
       <Button variant="contained" color="primary" href="get_started">
         Get Started
       </Button>

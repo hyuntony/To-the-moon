@@ -3,7 +3,7 @@ const url = "https://cdn.logo.com/hotlink-ok/logo-social.png";
 const Logo = () => {
   return (
     <div>
-      <img classNameName="logo" src={url} />
+      <img className="logo" src={url} />
     </div>
   );
 };

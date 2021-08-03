@@ -6,12 +6,12 @@ import "./Intro.scss";
 
 function Intro() {
   return (
-    <div classNameName="intro-container">
+    <div className="intro-container">
       <h1>To The Moon!</h1>
       <p>Insert Slogan/Motto/Mission</p>
-      <div classNameName="intro-btns">
+      <div className="intro-btns">
         <Button
-          classNameName="btns"
+          className="btns"
           buttonStyle="btn--outline"
           buttonSize="btn--large"
         >

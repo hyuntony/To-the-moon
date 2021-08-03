@@ -14,7 +14,7 @@ export default function TextButtons(props) {
   const classNamees = useStyles();
 
   return (
-    <div classNameName={classNamees.root}>
+    <div className={classNamees.root}>
       <Button href={props.href}>{props.text}</Button>
     </div>
   );
