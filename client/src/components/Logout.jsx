@@ -26,47 +26,47 @@ function Logout() {
 
   return (
     <>
-      <nav className="logout">
-        <div className="logout-container">
-          <Link to="/" className="logout-logo" onClick={closeMobileMenu}>
+      <nav classNameName="logout">
+        <div classNameName="logout-container">
+          <Link to="/" classNameName="logout-logo" onClick={closeMobileMenu}>
             TTM
-            <i class="fas fa-coins"></i>
+            <i className="fas fa-coins"></i>
           </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
+          <div classNameName="menu-icon" onClick={handleClick}>
+            <i classNameName={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
-          <ul className={click ? "logout-menu active" : "logout-menu"}>
-            <li className="logout-item">
+          <ul classNameName={click ? "logout-menu active" : "logout-menu"}>
+            <li classNameName="logout-item">
               <Link
                 to="/details"
-                className="logout-links"
+                classNameName="logout-links"
                 onClick={closeMobileMenu}
               >
                 Portfolio
               </Link>
             </li>
-            <li className="logout-item">
+            <li classNameName="logout-item">
               <Link
                 to="/history"
-                className="logout-links"
+                classNameName="logout-links"
                 onClick={closeMobileMenu}
               >
                 Order History
               </Link>
             </li>
-            <li className="logout-item">
+            <li classNameName="logout-item">
               <Link
                 to="/about"
-                className="logout-links"
+                classNameName="logout-links"
                 onClick={closeMobileMenu}
               >
                 About Us
               </Link>
             </li>
-            <li className="logout-item">
+            <li classNameName="logout-item">
               <Link
                 to="/logout"
-                className="logout-links-mobile"
+                classNameName="logout-links-mobile"
                 onClick={closeMobileMenu}
               >
                 Logout

@@ -4,10 +4,10 @@ import "./Watchlist.scss";
 
 const Watchlist = () => {
   return (
-    <div class="search">
-      <div class="fa fa-search"></div>
-      <input class="search-bar" type="text" placeholder="Search..." />
-      <div class="fa fa-times"></div>
+    <div className="search">
+      <div className="fa fa-search"></div>
+      <input className="search-bar" type="text" placeholder="Search..." />
+      <div className="fa fa-times"></div>
     </div>
   );
 };

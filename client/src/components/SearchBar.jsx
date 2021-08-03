@@ -10,13 +10,13 @@ export default function SearchBar(props) {
   useDebounce(() => props.onSearch(value), 400);
 
   return (
-    <section className="search">
+    <section classNameName="search">
       <form
-        className="search__form"
+        classNameName="search__form"
         onSubmit={(event) => event.preventDefault()}
       >
         <input
-          className="radius"
+          classNameName="radius"
           spellCheck="false"
           placeholder="Search Artists"
           name="search"

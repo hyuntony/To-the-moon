@@ -8,26 +8,26 @@ import "./Home.scss";
 const Home = () => {
   return (
     <div>
-      <div class="search">
-        <div class="fa fa-search"></div>
-        <input class="search-bar" type="text" placeholder="Search..." />
-        <div class="fa fa-times"></div>
+      <div className="search">
+        <div className="fa fa-search"></div>
+        <input className="search-bar" type="text" placeholder="Search..." />
+        <div className="fa fa-times"></div>
       </div>
-      <main class="main">
-        <section class="section watchlist">
+      <main className="main">
+        <section className="section watchlist">
           <span>Watchlist</span>
-          <i class="fas fa-arrow-down"></i>
-          <i class="fas fa-arrow-up"></i>
+          <i className="fas fa-arrow-down"></i>
+          <i className="fas fa-arrow-up"></i>
         </section>
-        <section class="section portfolio">
+        <section className="section portfolio">
           <h1>Portfolio</h1>
           <span>Total Balance:</span>
           <span>Investments:</span>
         </section>
-        <section class="section holdings">
+        <section className="section holdings">
           <span>holdings</span>
         </section>
-        <footer class="section footer">Footer</footer>
+        <footer className="section footer">Footer</footer>
       </main>
     </div>
   );

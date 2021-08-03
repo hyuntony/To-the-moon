@@ -26,25 +26,29 @@ function Nav() {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+      <nav classNameName="navbar">
+        <div classNameName="navbar-container">
+          <Link to="/" classNameName="navbar-logo" onClick={closeMobileMenu}>
             TTM
-            <i class="fas fa-coins"></i>
+            <i className="fas fa-coins"></i>
           </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
+          <div classNameName="menu-icon" onClick={handleClick}>
+            <i classNameName={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/about" className="nav-links" onClick={closeMobileMenu}>
+          <ul classNameName={click ? "nav-menu active" : "nav-menu"}>
+            <li classNameName="nav-item">
+              <Link
+                to="/about"
+                classNameName="nav-links"
+                onClick={closeMobileMenu}
+              >
                 About Us
               </Link>
             </li>
             <li>
               <Link
                 to="/register"
-                className="nav-links-mobile"
+                classNameName="nav-links-mobile"
                 onClick={closeMobileMenu}
               >
                 GET STARTED
