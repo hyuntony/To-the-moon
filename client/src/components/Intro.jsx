@@ -1,24 +1,25 @@
 import React from "react";
-import TextButtons from "./Universal/TextButtons";
+import { Button } from "./Button";
 
+import "./App.scss";
 import "./Intro.scss";
 
-const Intro = () => {
+function Intro() {
   return (
     <div className="intro-container">
       <h1>To The Moon!</h1>
-      <p>Insert motto/mission/slogan here</p>
+      <p>Insert Slogan/Motto/Mission</p>
       <div className="intro-btns">
-        <TextButtons
+        <Button
           className="btns"
           buttonStyle="btn--outline"
           buttonSize="btn--large"
         >
           GET STARTED
-        </TextButtons>
+        </Button>
       </div>
     </div>
   );
-};
+}
 
 export default Intro;
