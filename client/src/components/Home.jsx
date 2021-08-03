@@ -2,17 +2,14 @@ import React from "react";
 // import SearchBar from "components/SearchBar";
 
 import Watchlist from "./Watchlist";
+import Search from './search/Search'
 
 import "./Home.scss";
 
 const Home = () => {
   return (
     <div>
-      <div className="search">
-        <div className="fa fa-search"></div>
-        <input className="search-bar" type="text" placeholder="Search..." />
-        <div className="fa fa-times"></div>
-      </div>
+      <Search />
       <main className="main">
         <section className="section watchlist">
           <span>Watchlist</span>

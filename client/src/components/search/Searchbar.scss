@@ -1,0 +1,14 @@
+.search-bar {
+  margin: 0 0.5rem 0 0.5rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  color: white;
+  font-size: 20px;
+}
+
+.search-result {
+  display: flex;
+  flex-direction: column;
+}

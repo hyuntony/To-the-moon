@@ -15,7 +15,8 @@ import { createUsers } from './seeds/create-users.js'
 
 // Routers
 import indexRouter from './routes/index.js';
-import userRouter from './routes/user.js'
+import userRouter from './routes/user.js';
+import finnRouter from './routes/finn.js';
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/finn', finnRouter);
  
 const eraseDatabaseOnSync = true;
 

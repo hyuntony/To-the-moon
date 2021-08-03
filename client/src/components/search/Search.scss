@@ -1,0 +1,23 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+
+  margin-right: 100px;
+  margin-left: 100px;
+  margin-top: 20px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: red;
+}
+
+.fa-search {
+  color: white;
+  padding-left: 10px;
+}
+
+.fa-times {
+  color: white;
+  padding-right: 10px;
+}
