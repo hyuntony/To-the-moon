@@ -1,4 +1,5 @@
 import Breakdown from "./details/Breakdown"
+import './Details.scss'
 const Details = () => {
   return (
     <div className='details'>

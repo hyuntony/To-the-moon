@@ -38,25 +38,42 @@ const Breakdown = () => {
   }, []);
     return (
     <div className='details-breakdown'>
-        <div className="logo-name">
+        <div>
         <img src={state.profile["logo"]}></img>
-        <h1>{state.profile['ticker']}</h1>
+        <h3>{state.profile['ticker']}</h3>
+        <h3>{state.profile['name']}</h3>
         </div>
-        <h1>{state.profile['name']}</h1>
-        <h1>52 Week High</h1>
-        <h5>{state.basic['52WeekHigh']}</h5>
-        <h1>52 Week Low</h1>
-        <h5>{state.basic['52WeekLow']}</h5>
-        <h1>Price Change</h1>
-        <h5>{state.quote['pc']}</h5>
-        <h1>Current Price</h1>
+        <div className='detail-info'>
+        <div className='left'>
+        <div className='left-left'>
+        <h3>Current Price</h3>
+        <h3>Market Capitalization</h3>
+        <h3>Price Change</h3>
+        <h3>10 Day Average Trading Volume</h3>
+        </div>
+        <div className='left-right'>
         <h5>{state.quote['c']}</h5>
-        <h1>Market Capitalization</h1>
         <h5>{state.basic['marketCapitalization']}</h5>
-        <h1>10 Day Average Trading Volume</h1>
+        <h5>{state.quote['pc']}</h5>
         <h5>{state.basic['10DayAverageTradingVolume']}</h5>
-        <h1>Outstanding Shares</h1>
+        </div>
+        
+        </div>
+        <div className='right'>
+        <div className='right-left'>
+        <h3>52 Week High</h3>
+        <h3>52 Week Low</h3>
+        <h3>Outstanding Shares</h3>
+        <h3>Outstanding Shares</h3>
+        </div>
+        <div className='right-right'>
+        <h5>{state.basic['52WeekHigh']}</h5>
+        <h5>{state.basic['52WeekLow']}</h5>
         <h5>{state.profile['shareOutstanding']}</h5>
+        <h5>{state.profile['shareOutstanding']}</h5>
+        </div>
+        </div>
+        </div>
     </div>
     )
 }
