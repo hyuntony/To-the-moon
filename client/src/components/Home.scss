@@ -60,34 +60,17 @@
   color: blue;
 }
 
-.main {
-  font-weight: 700;
-  font-size: 30px;
-  text-align: center;
-  margin: 20px;
-}
-
-.watchlist {
-  background-color: #c0ffee;
-  height: 600px;
-  width: 20%;
-  float: right;
-}
-
-.portfolio {
-  background-color: #f5cf8e;
-  width: 80%;
+.holding-title {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-.holdings {
-  width: 33.3%;
-  float: left;
+.container {
+  border: 2px solid black;
 }
 
-.footer {
-  color: #f0f0f0;
-  background-color: #333333;
-  clear: right;
+.table-headers {
+  font-size: 20px;
 }
