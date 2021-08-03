@@ -47,17 +47,17 @@ const Breakdown = () => {
         <img src={state.profile["logo"]}></img>
         <div className='details-desc'>
         <div className='details-desc-left'>
-        <h3>{state.profile['ticker']}</h3>
+        <p>{state.profile['ticker']}</p>
         <div className='details-price'>
-        <h3>Current Price: </h3>
-        <h5>${state.quote['c']}</h5>
+        <p>Current Price: </p>
+        <p>${state.quote['c']}</p>
         </div>
         </div>
         <div className='details-desc-right'>
-        <h3>{state.profile['name']}</h3>
+        <p>{state.profile['name']}</p>
         <div>
-        <h3>Price Change: </h3>
-        <h5>{state.quote['pc']}%</h5>
+        <p>Price Change: </p>
+        <p>{state.quote['pc']}%</p>
         </div>
         </div>
         </div>
@@ -67,29 +67,29 @@ const Breakdown = () => {
         <div className='left'>
         <div className='left-left'>
         
-        <h3>Earnings Date</h3>
-        <h3>Market Capitalization</h3>
+        <p>Earnings Date</p>
+        <p>Market Capitalization</p>
     
-        <h3>Average Daily Volume (10 Day)</h3>
+        <p>Average Daily Volume (10 Day)</p>
         </div>
         <div className='left-right'>
        
-        <h5>{state.earning.date}</h5>
-        <h5>{state.basic['marketCapitalization']}</h5>
+        <p>{state.earning.date}</p>
+        <p>{state.basic['marketCapitalization']}</p>
         
-        <h5>{state.basic['10DayAverageTradingVolume']}</h5>
+        <p>{state.basic['10DayAverageTradingVolume']}</p>
         </div>
         </div>
         <div className='right'>
         <div className='right-left'>
-        <h3>52 Week High</h3>
-        <h3>52 Week Low</h3>
-        <h3>Outstanding Shares</h3>
+        <p>52 Week High</p>
+        <p>52 Week Low</p>
+        <p>Outstanding Shares</p>
         </div>
         <div className='right-right'>
-        <h5>${state.basic['52WeekHigh']}</h5>
-        <h5>${state.basic['52WeekLow']}</h5>
-        <h5>{state.profile['shareOutstanding']}</h5>
+        <p>${state.basic['52WeekHigh']}</p>
+        <p>${state.basic['52WeekLow']}</p>
+        <p>{state.profile['shareOutstanding']}</p>
         </div>
         </div>
         </div>

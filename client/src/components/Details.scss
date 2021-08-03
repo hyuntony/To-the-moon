@@ -1,8 +1,15 @@
+.details {
+    color: black;
+    font-size: 2em;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 .details-breakdown {
     display: flex;
     flex-direction: column; 
 }
-.details h5 {
+.details p {
     height: 100%;
 }
 .left {
@@ -76,9 +83,11 @@
     justify-content: flex-start;
     
 }
-.details-desc h3 {
+.details-desc p {
    width: 80%;
 }
-.details-desc div h3{
+.details-desc div p{
   width:100%;
+  display: flex;
+  align-items: flex-end;
 }
