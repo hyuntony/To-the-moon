@@ -65,8 +65,8 @@ function Logout() {
             </li>
             <li className="logout-item">
               <Link
-                to="/register"
-                className="nav-links-mobile"
+                to="/logout"
+                className="logout-links-mobile"
                 onClick={closeMobileMenu}
               >
                 Logout
