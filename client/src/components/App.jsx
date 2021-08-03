@@ -16,9 +16,15 @@ import About from './About';
 
 import './App.scss'
 const finnhub = require('finnhub');
+
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-api_key.apiKey = "<API_key>"
+api_key.apiKey = "c43vdjqad3iftpcmpmpg"
 const finnhubClient = new finnhub.DefaultApi()
+finnhubClient.symbolSearch('AAPL', (error, data, response) => {
+  console.log(data)
+});
+
+
 function App() {
   const [user, setUser] = useState(true)
 
@@ -27,6 +33,7 @@ function App() {
       .post("/api/login", { data: { id } })
       .then(res => setUser(res.data))
   }
+  
 
   return (
     <Router>
