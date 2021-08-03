@@ -30,7 +30,7 @@ function Logout() {
         <div className="logout-container">
           <Link to="/" className="logout-logo" onClick={closeMobileMenu}>
             TTM
-            <i class="fas fa-coins"></i>
+            <i className="fas fa-coins"></i>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />

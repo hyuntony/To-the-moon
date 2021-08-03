@@ -5,8 +5,8 @@ import profile from "./profile.jpeg";
 const About = () => {
   return (
     <div>
-      <div class="about-section">
-        <h1 class="about-us">About Us</h1>
+      <div className="about-section">
+        <h1 className="about-us">About Us</h1>
         <p>
           We are a cutting edge, state of the art trading platform. Use our app
           to get rich quick. To the moon baby!
@@ -14,54 +14,54 @@ const About = () => {
         <p>Also, we are fucking amazing. Read about us below.</p>
       </div>
 
-      <h2 class="our-team">Our Team</h2>
-      <div class="row">
-        <div class="column">
-          <div class="card">
-            <img class="profile" src={profile} alt="Logo" />
-            <div class="container">
+      <h2 className="our-team">Our Team</h2>
+      <div className="row">
+        <div className="column">
+          <div className="card">
+            <img className="profile" src={profile} alt="Logo" />
+            <div className="container">
               <h2>Kevin Yu</h2>
-              <p class="title">Co-Founder</p>
-              <p class="describe">
+              <p className="title">Co-Founder</p>
+              <p className="describe">
                 Some text that describes me lorem ipsum ipsum lorem.
               </p>
-              <p class="email">keviny@example.com</p>
+              <p className="email">keviny@example.com</p>
               <p>
-                <button class="button">Contact</button>
+                <button className="button">Contact</button>
               </p>
             </div>
           </div>
         </div>
 
-        <div class="column">
-          <div class="card">
-            <img class="profile" src={profile} alt="Logo" />
-            <div class="container">
+        <div className="column">
+          <div className="card">
+            <img className="profile" src={profile} alt="Logo" />
+            <div className="container">
               <h2>Anthony Kim</h2>
-              <p class="title">Co-Founder</p>
-              <p class="describe">
+              <p className="title">Co-Founder</p>
+              <p className="describe">
                 Some text that describes me lorem ipsum ipsum lorem.
               </p>
-              <p class="email">anthonyk@example.com</p>
+              <p className="email">anthonyk@example.com</p>
               <p>
-                <button class="button">Contact</button>
+                <button className="button">Contact</button>
               </p>
             </div>
           </div>
         </div>
 
-        <div class="column">
-          <div class="card">
-            <img class="profile" src={profile} alt="Logo" />
-            <div class="container">
+        <div className="column">
+          <div className="card">
+            <img className="profile" src={profile} alt="Logo" />
+            <div className="container">
               <h2>Dexter Glied</h2>
-              <p class="title">Co-Founder</p>
-              <p class="describe">
+              <p className="title">Co-Founder</p>
+              <p className="describe">
                 Some text that describes me lorem ipsum ipsum lorem.
               </p>
-              <p class="email">dexterg@example.com</p>
+              <p className="email">dexterg@example.com</p>
               <p>
-                <button class="button">Contact</button>
+                <button className="button">Contact</button>
               </p>
             </div>
           </div>
