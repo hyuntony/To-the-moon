@@ -12,7 +12,6 @@ const SearchBar = ({ results, onSearch }) => {
 
   function handleClick(link) {
     history.push(`/details/${link}`);
-    console.log(`/details/${link}`)
   }
 
   useEffect(() => {
