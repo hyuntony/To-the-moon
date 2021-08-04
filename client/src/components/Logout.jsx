@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import "./Logout.scss";
 
-function Logout() {
+const Logout = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -78,6 +78,6 @@ function Logout() {
       </nav>
     </>
   );
-}
+};
 
 export default Logout;

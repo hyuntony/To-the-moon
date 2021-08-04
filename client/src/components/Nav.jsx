@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import { Link } from "react-router-dom";
 import "./Nav.scss";
 
-function Nav() {
+const Nav = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -56,6 +56,6 @@ function Nav() {
       </nav>
     </>
   );
-}
+};
 
 export default Nav;

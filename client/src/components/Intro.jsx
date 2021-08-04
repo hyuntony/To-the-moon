@@ -4,7 +4,7 @@ import { Button } from "./Button";
 import "./App.scss";
 import "./Intro.scss";
 
-function Intro() {
+const Intro = () => {
   return (
     <div className="intro-container">
       <h1>To The Moon!</h1>
@@ -20,6 +20,6 @@ function Intro() {
       </div>
     </div>
   );
-}
+};
 
 export default Intro;
