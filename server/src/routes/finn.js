@@ -26,6 +26,15 @@ router.get('/:symbol/profile', async (req, res) => {
   });
 });
 
+router.get('/:symbol/candles', async (req, res) => {
+  const symbol = req.params.symbol;
+  api_key.apiKey = process.env.FINNHUB_KEY;
+  finnhubClient.stockCandles(symbol, "M", 1596297600, 1627833600, {}, (error, data, response) => {
+    return res.json(data)
+  });
+  
+});
+
 router.get('/:symbol/financials', async (req, res) => {
   const symbol = req.params.symbol;
   api_key.apiKey = process.env.FINNHUB_KEY;

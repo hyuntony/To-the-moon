@@ -30,6 +30,8 @@ const Breakdown = () => {
       });
   }, []);
   return (
+    <div>
+      
     <div className='details-breakdown'>
       <img src={state.symbol.logo}></img>
       <p>{state.symbol.name}</p>
@@ -39,6 +41,7 @@ const Breakdown = () => {
       <p>Daily Trading Volume (10 Day): {state.financial['10DayAverageTradingVolume']}</p>
       <p>52 Week High: ${state.financial['52WeekHigh']}</p>
       <p>52 Week Low: ${state.financial['52WeekLow']}</p>
+    </div>
     </div>
   )
     // return (

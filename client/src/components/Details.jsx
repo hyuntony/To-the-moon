@@ -1,9 +1,11 @@
 import Breakdown from "./details/Breakdown"
+
+import LineChart from "./details/LineChart"
 import './Details.scss'
 const Details = () => {
   return (
     <div className='details'>
-      <h4>Chart</h4>
+      <LineChart />
       <Breakdown />
     </div>
   )
