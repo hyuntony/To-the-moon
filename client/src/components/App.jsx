@@ -35,7 +35,7 @@ function App() {
               {!user && <Intro />}
               {user && <Home />}
             </Route>
-            <Route path="/details">
+            <Route path="/details/:symbol">
               <Details />
             </Route>
             <Route path="/history">
