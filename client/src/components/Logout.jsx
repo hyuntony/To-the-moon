@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import "./Logout.scss";
 
-const Logout = () => {
+const Logout = ({ user, login, logout }) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -63,14 +63,29 @@ const Logout = () => {
                 About Us
               </Link>
             </li>
+            {!user && <li className="logout-item">
+              <button
+                className="logout-links"
+                onClick={() => login('1@email.com')}
+              >
+                Login 1
+              </button>
+            </li> }
+            {!user && <li className="logout-item">
+              <button
+                className="logout-links"
+                onClick={() => login('2@email.com')}
+              >
+                Login 2
+              </button>
+            </li> }
             <li className="logout-item">
-              <Link
-                to="/logout"
+              <button
                 className="logout-links-mobile"
-                onClick={closeMobileMenu}
+                onClick={logout}
               >
                 Logout
-              </Link>
+              </button>
             </li>
           </ul>
           {button && <Button buttonStyle="btn--outline">Logout</Button>}

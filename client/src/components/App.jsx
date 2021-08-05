@@ -18,18 +18,23 @@ apiKey.apiKey = "<API_key>";
 const finnhubClient = new finnhub.DefaultApi();
 
 const App = () => {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState("");
 
-  const superBasicLoginYeah = (id) => {
-    axios.post("/api/login", { data: { id } }).then((res) => setUser(res.data));
+  const login = (email) => {
+    axios.post("/user/login", { email })
+      .then((res) => setUser(res.data));
   };
+
+  const logout = () => {
+    setUser(null);
+  }
 
   return (
     <Router>
       <div className="App">
         <header>
           {/* <Nav loggedIn={user} /> */}
-          <Logout loggedIn={user} />
+          <Logout user={user} login={login} logout={logout} />
         </header>
         <main>
           <Switch>
