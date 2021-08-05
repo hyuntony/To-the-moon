@@ -10,6 +10,7 @@ import Details from "./Details";
 import History from "./History";
 import About from "./About";
 
+
 import "./App.scss";
 
 const finnhub = require("finnhub");
@@ -31,6 +32,7 @@ const App = () => {
 
   return (
     <Router>
+      
       <div className="App">
         <header>
           {/* <Nav loggedIn={user} /> */}

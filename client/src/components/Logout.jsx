@@ -36,24 +36,15 @@ const Logout = ({ user, login, logout }) => {
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
           <ul className={click ? "logout-menu active" : "logout-menu"}>
-            <li className="logout-item">
+          {user && <li className="logout-item">
               <Link
-                to="/details"
+                to="/"
                 className="logout-links"
                 onClick={closeMobileMenu}
               >
                 Portfolio
               </Link>
-            </li>
-            <li className="logout-item">
-              <Link
-                to="/history"
-                className="logout-links"
-                onClick={closeMobileMenu}
-              >
-                Order History
-              </Link>
-            </li>
+            </li>}
             <li className="logout-item">
               <Link
                 to="/about"
@@ -63,32 +54,48 @@ const Logout = ({ user, login, logout }) => {
                 About Us
               </Link>
             </li>
+            {user && <li className="logout-item">
+              <Link
+                to="/history"
+                className="logout-links"
+                onClick={closeMobileMenu}
+              >
+                Order History
+              </Link>
+            </li>}
             {!user && <li className="logout-item">
-              <button
+              <Link
                 className="logout-links"
                 onClick={() => login('1@email.com')}
               >
                 Login 1
-              </button>
-            </li> }
-            {!user && <li className="logout-item">
-              <button
+              </Link>
+              </li>}
+              {!user && <li className="logout-item">
+              <Link
                 className="logout-links"
                 onClick={() => login('2@email.com')}
               >
                 Login 2
-              </button>
-            </li> }
-            <li className="logout-item">
-              <button
-                className="logout-links-mobile"
-                onClick={logout}
+              </Link>
+              </li>}
+              {!user && <li className="logout-item">
+              <Link
+                className="logout-links"
+                onClick={() => login('3@email.com')}
+              >
+                Login 3
+              </Link>
+              </li>}
+          {user && <li className="logout-item">
+              <Link to='/'
+                className="logout-links"
+                onClick={() => logout()}
               >
                 Logout
-              </button>
-            </li>
+              </Link>
+              </li>}
           </ul>
-          {button && <Button buttonStyle="btn--outline">Logout</Button>}
         </div>
       </nav>
     </>
@@ -96,3 +103,27 @@ const Logout = ({ user, login, logout }) => {
 };
 
 export default Logout;
+// {!user && <li className="logout-item">
+//               <button
+//                 className="logout-links"
+//                 onClick={() => login('1@email.com')}
+//               >
+//                 Login 1
+//               </button>
+//             </li> }
+//             {!user && <li className="logout-item">
+//               <button
+//                 className="logout-links"
+//                 onClick={() => login('2@email.com')}
+//               >
+//                 Login 2
+//               </button>
+//             </li> }
+//             <li className="logout-item">
+//               <button
+//                 className="logout-links-mobile"
+//                 onClick={logout}
+//               >
+//                 Logout
+//               </button>
+//             </li>

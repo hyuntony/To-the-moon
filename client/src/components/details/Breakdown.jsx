@@ -47,49 +47,30 @@ const Breakdown = () => {
 
     const showPrice = () => {
       if (!price) {
-        return currentPrice
+        return Math.round(currentPrice).toFixed(2)
       } else {
-        return price
+        return Math.round(price*100).toFixed(2)/100
       }
+    }
+    const showPriceChange = () => {
+      const priceNow = showPrice();
+      const priceChange = ((priceNow - state.quote.pc)/ priceNow)*100
+      return priceChange.toFixed(2)
     }
   return (
     <div className='details-breakdown'>
       <img src={state.symbol.logo}></img>
       <h1>{state.symbol.name}</h1>
       <p>{state.symbol.ticker}</p>
-      <p>${showPrice()}</p>
-      <p>${state.quote.dp}</p>
-      <p>Market Capitalization: ${state.symbol.marketCapitalization}</p>
-      <p>Share Outstanding: {state.symbol.shareOutstanding}</p>
-      <p>Daily Trading Volume (10 Day): {state.financial['10DayAverageTradingVolume']}</p>
-      <p>52 Week High: ${state.financial['52WeekHigh']}</p>
-      <p>52 Week Low: ${state.financial['52WeekLow']}</p>
+      <div><p>Current Price:</p><p>${showPrice()}</p></div>
+      <div><p>Percentage Price Change:</p><p>{showPriceChange()}%</p></div>
+      <div><p>Market Capitalization:</p><p>${state.symbol.marketCapitalization}</p></div>
+      <div><p>Share Outstanding:</p><p>{state.symbol.shareOutstanding}</p></div>
+      <div><p>Daily Trading Volume (10 Day):</p><p>{state.financial['10DayAverageTradingVolume']}</p></div>
+      <div><p>52 Week High:</p><p>${state.financial['52WeekHigh']}</p></div>
+      <div><p>52 Week Low:</p><p>${state.financial['52WeekLow']}</p></div>
     </div>
   )
-    // return (
-    // <div className='details-breakdown'>
-
-  //     <p>{state.earning.date}</p> change to P/E ratio (Price to earnings)
-  //     <p>{state.basic['marketCapitalization']}</p>
-
-  //     <p>{state.basic['10DayAverageTradingVolume']}</p>
-  //     </div>
-  //     </div>
-  //     <div className='right'>
-  //     <div className='right-left'>
-  //     <p>52 Week High</p>
-  //     <p>52 Week Low</p>
-  //     <p>Outstanding Shares</p>
-  //     </div>
-  //     <div className='right-right'>
-  //     <p>${state.basic['52WeekHigh']}</p>
-  //     <p>${state.basic['52WeekLow']}</p>
-  //     <p>{state.profile['shareOutstanding']}</p>
-  //     </div>
-  //     </div>
-  //     </div>
-  // </div>
-  // )
 };
 
 export default Breakdown;
