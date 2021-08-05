@@ -30,18 +30,16 @@ const Breakdown = () => {
       });
   }, []);
   return (
-    <div>
-      
+
     <div className='details-breakdown'>
       <img src={state.symbol.logo}></img>
-      <p>{state.symbol.name}</p>
+      <h1>{state.symbol.name}</h1>
       <p>{state.symbol.ticker}</p>
-      <p>Market Capitalization: ${state.symbol.marketCapitalization}</p>
-      <p>Share Outstanding: {state.symbol.shareOutstanding}</p>
-      <p>Daily Trading Volume (10 Day): {state.financial['10DayAverageTradingVolume']}</p>
-      <p>52 Week High: ${state.financial['52WeekHigh']}</p>
-      <p>52 Week Low: ${state.financial['52WeekLow']}</p>
-    </div>
+      <p>Market Capitalization: <p>${state.symbol.marketCapitalization}</p></p>
+      <p>Share Outstanding: <p>{state.symbol.shareOutstanding}</p></p>
+      <p>Daily Trading Volume (10 Day): <p>{state.financial['10DayAverageTradingVolume']}</p></p>
+      <p>52 Week High: <p>${state.financial['52WeekHigh']}</p></p>
+      <p>52 Week Low: <p>${state.financial['52WeekLow']}</p></p>
     </div>
   )
     // return (

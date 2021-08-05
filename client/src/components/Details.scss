@@ -1,7 +1,7 @@
 .details {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 200px;
     color: black;
 }
 .details-breakdown {
@@ -9,9 +9,13 @@
     font-size: 20px;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
 }
-
+.details-breakdown p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .details-breakdown img {
     height: 100px;
     width: 100px;
@@ -19,4 +23,11 @@
 
 .line-graph {
     height: 100%;
+}
+
+.details-buttons {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    justify-content: flex-end;
 }

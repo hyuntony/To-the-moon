@@ -1,5 +1,5 @@
 import Breakdown from "./details/Breakdown"
-
+import DetailBuySell from "./details/DetailBuySell"
 import LineChart from "./details/LineChart"
 import './Details.scss'
 const Details = () => {
@@ -7,6 +7,7 @@ const Details = () => {
     <div className='details'>
       <LineChart />
       <Breakdown />
+      <DetailBuySell />
     </div>
   )
 }
