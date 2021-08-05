@@ -9,7 +9,7 @@ const DetailBuySell = () => {
     const { symbol } = useParams();
     console.log(value.length)
     const addWatchlist = () => {
-        axios.post(`/details/${symbol}/watchlist`, {symbol})
+        axios.post(`/details/${symbol}/watchlist`, {symbol: symbol,})
         .then((res) => {console.log(res.data)})
     }
     const buyOnClick = () => {

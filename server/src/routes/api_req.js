@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.post('/:id/watchlist', (req, res) => {
    console.log(req.body.symbol)
+   
 const watchlist = new models.Watchlist(req.body);
 console.log(watchlist);
 watchlist.save()
