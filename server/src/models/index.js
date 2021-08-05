@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
  
 import User from './user.js';
 import Message from './message.js';
+import Watchlist from './watchlist.js';
  
 const connectDb = () => {
   return mongoose.connect(process.env.DATABASE_URL, {
@@ -12,7 +13,7 @@ const connectDb = () => {
   });
 };
  
-const models = { User, Message };
+const models = { User, Message, Watchlist };
  
 export { connectDb };
  
