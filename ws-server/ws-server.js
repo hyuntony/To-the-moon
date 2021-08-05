@@ -36,8 +36,12 @@ wss.on('connection', function(ws) {
     console.log(`subscribed to: ${symbol}`);
     
     socket.on('message', function(event) {
-      ws.send(`${event}`);
-      console.log('Message from server ', JSON.parse(event));
+      const data = JSON.parse(event)
+      if (data.type === 'trade') {
+        const price = data.data[0].p
+        ws.send(`${price}`);
+      }
+      console.log('Message from server ', data);
     });
   });
   ws.on('close', function(ws) {
