@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import HistoryGrid from "./transaction-history/HistoryGrid";
 
 const History = () => {
-  return (
-    <div>
-      History
-    </div>
-  )
-}
+  return <HistoryGrid />;
+};
 
-export default History
+export default History;

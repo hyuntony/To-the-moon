@@ -11,11 +11,13 @@ import History from "./History";
 import About from "./About";
 
 import "./App.scss";
+
 const finnhub = require("finnhub");
-const api_key = finnhub.ApiClient.instance.authentications["api_key"];
-api_key.apiKey = "<API_key>";
+const apiKey = finnhub.ApiClient.instance.authentications["api_key"];
+apiKey.apiKey = "<API_key>";
 const finnhubClient = new finnhub.DefaultApi();
-function App() {
+
+const App = () => {
   const [user, setUser] = useState(true);
 
   const superBasicLoginYeah = (id) => {
@@ -55,6 +57,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;

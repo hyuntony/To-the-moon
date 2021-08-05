@@ -3,7 +3,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Watchlist from "./Watchlist";
-import Search from './search/Search'
+import Search from "./search/Search";
 import HoldingRow from "./HoldingRow";
 
 import "./Home.scss";

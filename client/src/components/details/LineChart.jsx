@@ -1,18 +1,30 @@
-import axios from 'axios';
-import React, {useState, useEffect} from 'react';
-import { Line } from 'react-chartjs-2';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
 
 const data = {
-  labels: ['Septehmber', 'October', 'November', 'December','January', 'February', 'March',
-  'April', 'May', 'June', 'July', 'August'],
+  labels: [
+    "Septehmber",
+    "October",
+    "November",
+    "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+  ],
   datasets: [
     {
-      label: '# of Votes',
+      label: "# of Votes",
       data: [12, 19, 3, 5, 2, 3],
       fill: false,
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgba(255, 99, 132, 0.2)',
+      backgroundColor: "rgb(255, 99, 132)",
+      borderColor: "rgba(255, 99, 132, 0.2)",
     },
   ],
 };
@@ -35,7 +47,7 @@ const options = {
   },
   elements: {
     point: {
-      radius: 0,
+      radius: 1,
     }
   }
 };
@@ -47,8 +59,6 @@ const LineChart = () => {
         axios.get(`/finn/${symbol}/candles`)
         .then((res)=>{
           const dateArray = res.data.t.map((number) => {
-            // const date = new Date(number * 1000)
-            // return `${date.getMonth() + 1}/${date.getDay() + 1}`
             const date = new Date(number * 1000);
             return date.toLocaleDateString('en-US');
           })
@@ -77,4 +87,4 @@ const LineChart = () => {
     )
 }
 
-export default LineChart
+export default LineChart;
