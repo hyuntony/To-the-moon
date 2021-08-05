@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema(
     hashed_password: { type: String },
     first_name: { type: String },
     last_name: { type: String },
-    balance: { type: Number }
+    balance: { type: Number },
+    watchlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Watchlist' }],
   },
   { timestamps: true },
 );

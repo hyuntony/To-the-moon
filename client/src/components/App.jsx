@@ -43,7 +43,7 @@ const App = () => {
               {user && <Home />}
             </Route>
             <Route path="/details/:symbol">
-              <Details />
+              <Details user={user}/>
             </Route>
             <Route path="/history">
               <History />

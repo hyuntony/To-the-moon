@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 
-const DetailBuySell = () => {
+const DetailBuySell = ({ user }) => {
     const [value, setValue] = useState(0)
     const { symbol } = useParams();
     console.log(value.length)
     const addWatchlist = () => {
-        axios.post(`/details/${symbol}/watchlist`, {symbol: symbol,})
+        axios.post(`/api/watchlist`, { symbol, user })
         .then((res) => {console.log(res.data)})
     }
     const buyOnClick = () => {
