@@ -29,19 +29,31 @@ router.get('/:symbol/profile', async (req, res) => {
 router.get('/:symbol/candles', async (req, res) => {
   const symbol = req.params.symbol;
   api_key.apiKey = process.env.FINNHUB_KEY;
-  finnhubClient.stockCandles(symbol, "M", 1596297600, 1627833600, {}, (error, data, response) => {
-    return res.json(data)
+  const date = new Date();
+  date.setMonth(date.getMonth()-12)
+  const yearago = Math.floor(date.getTime() / 1000)
+  const now = Math.floor(Date.now()/ 1000)
+  finnhubClient.stockCandles(symbol, "D", yearago, now, {}, (error, data, response) => {
+    return res.json(data);
   });
-  
 });
 
 router.get('/:symbol/financials', async (req, res) => {
   const symbol = req.params.symbol;
   api_key.apiKey = process.env.FINNHUB_KEY;
   finnhubClient.companyBasicFinancials(symbol, "all", (error, data, response) => {
-    return res.json(data.metric)
+    return res.json(data.metric);
   });
-})
+});
+
+router.get('/:symbol/quote', async (req, res) => {
+  const symbol = req.params.symbol;
+  api_key.apiKey = process.env.FINNHUB_KEY;
+  finnhubClient.quote(symbol, (error, data, response) => {
+    return res.json(data);
+  });
+});
+
 
 export default router;
 

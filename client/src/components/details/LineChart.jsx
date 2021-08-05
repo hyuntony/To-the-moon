@@ -18,13 +18,12 @@ const data = {
 };
 
 const options = {
-    legend:
-{
+  legend: {
     display: false,
-},
-title: {
+    },
+  title: {
     display: false
-},
+  },
   scales: {
     yAxes: [
       {
@@ -34,6 +33,11 @@ title: {
       },
     ],
   },
+  elements: {
+    point: {
+      radius: 0,
+    }
+  }
 };
 
 const LineChart = () => {
@@ -42,9 +46,15 @@ const LineChart = () => {
       useEffect(() => {
         axios.get(`/finn/${symbol}/candles`)
         .then((res)=>{
-           setData({
-                labels: ['September', 'October', 'November', 'December','January', 'February', 'March',
-                'April', 'May', 'June', 'July', 'August'],
+          const dateArray = res.data.t.map((number) => {
+            // const date = new Date(number * 1000)
+            // return `${date.getMonth() + 1}/${date.getDay() + 1}`
+            const date = new Date(number * 1000);
+            return date.toLocaleDateString('en-US');
+          })
+          console.log(dateArray);
+          setData({
+                labels: dateArray,
                 datasets: [
                   {
                     
