@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/finn', finnRouter);
-app.use('/details', api_reqRouter);
+app.use('/api', api_reqRouter);
  
 const eraseDatabaseOnSync = true;
 
