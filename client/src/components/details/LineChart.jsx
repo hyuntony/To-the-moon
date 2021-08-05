@@ -1,30 +1,41 @@
-import axios from 'axios';
-import React, {useState, useEffect} from 'react';
-import { Line } from 'react-chartjs-2';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
 
 const data = {
-  labels: ['Septehmber', 'October', 'November', 'December','January', 'February', 'March',
-  'April', 'May', 'June', 'July', 'August'],
+  labels: [
+    "Septehmber",
+    "October",
+    "November",
+    "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+  ],
   datasets: [
     {
-      label: '# of Votes',
+      label: "# of Votes",
       data: [12, 19, 3, 5, 2, 3],
       fill: false,
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgba(255, 99, 132, 0.2)',
+      backgroundColor: "rgb(255, 99, 132)",
+      borderColor: "rgba(255, 99, 132, 0.2)",
     },
   ],
 };
 
 const options = {
-    legend:
-{
+  legend: {
     display: false,
-},
-title: {
+    },
+  title: {
     display: false
-},
+  },
   scales: {
     yAxes: [
       {
@@ -34,6 +45,11 @@ title: {
       },
     ],
   },
+  elements: {
+    point: {
+      radius: 1,
+    }
+  }
 };
 
 const LineChart = () => {
@@ -42,9 +58,13 @@ const LineChart = () => {
       useEffect(() => {
         axios.get(`/finn/${symbol}/candles`)
         .then((res)=>{
-           setData({
-                labels: ['September', 'October', 'November', 'December','January', 'February', 'March',
-                'April', 'May', 'June', 'July', 'August'],
+          const dateArray = res.data.t.map((number) => {
+            const date = new Date(number * 1000);
+            return date.toLocaleDateString('en-US');
+          })
+          
+          setData({
+                labels: dateArray,
                 datasets: [
                   {
                     
@@ -67,4 +87,4 @@ const LineChart = () => {
     )
 }
 
-export default LineChart
+export default LineChart;
