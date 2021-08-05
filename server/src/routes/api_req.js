@@ -20,7 +20,6 @@ router.post('/watchlist', async (req, res) => {
    const user1 = await models.User.findByLogin(user.email)
 
    user1.save(function (err) {
-      console.log('inside callback')
       if (err) res.status(500).json(err);
     
       const watchlist = new models.Watchlist({
@@ -41,7 +40,8 @@ router.post('/watchlist/delete', async (req, res) => {
    const { symbol, user } = req.body;
 
    const status = await models.Watchlist.deleteMany({ symbol: symbol, user: user['_id'] });
-   res.json(status);
+   // if(!status)
+   res.json('watchlist removed successfully');
 })
 
 
