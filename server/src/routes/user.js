@@ -8,4 +8,11 @@ router.get('/', async (req, res) => {
   res.json(users);
 });
 
+router.post('/login', async (req, res) => {
+  const email = req.body.email
+  const user = await models.User.findByLogin(email)
+  
+  res.json(user)
+})
+
 export default router;

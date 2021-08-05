@@ -32,11 +32,9 @@ wss.on('connection', function(ws) {
   ws.on('message', function(message) {
     symbol = message.toString();
     
-    socket.on('open', function(event) {
-      socket.send(JSON.stringify({'type':'subscribe', 'symbol': symbol}));
-    });
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol':`${symbol}`}));
+    console.log(`subscribed to: ${symbol}`);
     
-    console.log(symbol);
     socket.on('message', function(event) {
       ws.send(`${event}`);
       console.log('Message from server ', JSON.parse(event));

@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema(
     },
     hashed_password: { type: String },
     first_name: { type: String },
-    last_name: { type: String }
+    last_name: { type: String },
+    balance: { type: Number }
   },
   { timestamps: true },
 );
