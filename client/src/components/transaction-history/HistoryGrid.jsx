@@ -4,36 +4,38 @@ import { makeStyles } from "@material-ui/core/styles";
 import "./HistoryGrid.scss";
 
 const columns = [
-  { field: "id" },
+  {
+    field: "Date",
+    width: 120,
+    valueFormatter: ({ value }) => `${value}`,
+  },
   { field: "Name", width: 120 },
   {
     field: "Price",
     type: "number",
     width: 120,
     valueFormatter: ({ value }) => `$${value}`,
+    sortable: false,
   },
   {
     field: "Shares",
     type: "number",
     width: 120,
     valueFormatter: ({ value }) => `${value}`,
+    sortable: false,
   },
   {
     field: "buySell",
     headerName: "Bought/Sold",
     width: 160,
     valueFormatter: ({ value }) => `${value}`,
+    sortable: false,
   },
   {
     field: "Status",
     width: 120,
     valueFormatter: ({ value }) => `${value}`,
-  },
-  {
-    field: "Date",
-    type: "number",
-    width: 120,
-    valueFormatter: ({ value }) => `${value}`,
+    sortable: false,
   },
 ];
 
@@ -104,13 +106,16 @@ export default function StylingAllCells() {
           rows={rows}
           columns={columns}
           getCellClassName={(params) => {
-            if (params.field === "id") {
+            if (params.field === "Date") {
               return "";
             }
             if (params.value === "Pending") {
               return "yellow";
             }
-            return params.value === "Sold" ? "red" : "green";
+            if (params.value === "Bought") {
+              return "green";
+            }
+            return params.value === "Sold" ? "red" : "";
           }}
         />
       </div>

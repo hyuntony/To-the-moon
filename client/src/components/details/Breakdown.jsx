@@ -56,7 +56,28 @@ const Breakdown = () => {
     } else {
       return Math.round(price * 100).toFixed(2) / 100;
     }
-  };
+  }
+    const weekHigh = (h) => {
+      if (h > showPrice()) {
+        return twoDec(h)
+      } else {
+        return showPrice()
+      }
+    }
+    const weekLow = (l) => {
+      if (l < showPrice()) {
+        return twoDec(l)
+      } else {
+        return showPrice()
+      }
+    }
+    const format = (p) => {
+      return `${(p/1000000).toFixed(2)}M`
+    }
+    const twoDec = (p) => {
+      return Math.round(p*100)/100
+    }
+
   const showPriceChange = () => {
     const priceNow = showPrice();
     const priceChange = ((priceNow - state.quote.pc) / priceNow) * 100;
@@ -67,36 +88,20 @@ const Breakdown = () => {
       <img src={state.symbol.logo}></img>
       <h1>{state.symbol.name}</h1>
       <p>{state.symbol.ticker}</p>
-      <div>
-        <p>Current Price:</p>
-        <p>${showPrice()}</p>
-      </div>
-      <div>
-        <p>Percentage Price Change:</p>
-        <p>{showPriceChange()}%</p>
-      </div>
-      <div>
-        <p>Market Capitalization:</p>
-        <p>${state.symbol.marketCapitalization}</p>
-      </div>
-      <div>
-        <p>Share Outstanding:</p>
-        <p>{state.symbol.shareOutstanding}</p>
-      </div>
-      <div>
-        <p>Daily Trading Volume (10 Day):</p>
-        <p>{state.financial["10DayAverageTradingVolume"]}</p>
-      </div>
-      <div>
-        <p>52 Week High:</p>
-        <p>${state.financial["52WeekHigh"]}</p>
-      </div>
-      <div>
-        <p>52 Week Low:</p>
-        <p>${state.financial["52WeekLow"]}</p>
-      </div>
+      <div><p>Current Price:</p><p>${showPrice()}</p></div>
+      <div><p>Percentage Price Change:</p><p>{showPriceChange()}%</p></div>
+      <div><p>Market Capitalization:</p><p>${format(state.symbol.marketCapitalization)}</p></div>
+      <div><p>Share Outstanding:</p><p>{twoDec(state.symbol.shareOutstanding)}M</p></div>
+      <div><p>Average Daily Volume (10 Day):</p><p>{twoDec(state.financial['10DayAverageTradingVolume'])}M</p></div>
+      <div><p>52 Week High:</p><p>${weekHigh(state.financial['52WeekHigh'])}</p></div>
+      <div><p>52 Week Low:</p><p>${weekLow(state.financial['52WeekLow'])}</p></div>
     </div>
   );
 };
 
 export default Breakdown;
+
+// currently on the details page. marketcap, share outstanding, and avg daily volume is displayed in Millions
+// maybe reflect that
+// and just rename 'daily trading volume' to 'average daily volume'
+// and if you could have the 52week high and low change if the current prices breaks new high or low. that would be great
