@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
  
 import User from './user.js';
-import Message from './message.js';
+import Order from './order.js';
 import Watchlist from './watchlist.js';
  
 const connectDb = () => {
@@ -13,7 +13,7 @@ const connectDb = () => {
   });
 };
  
-const models = { User, Message, Watchlist };
+const models = { User, Order, Watchlist };
  
 export { connectDb };
  
