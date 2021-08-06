@@ -14,7 +14,7 @@ const connectDb = () => {
   });
 };
  
-const models = { User, Message, Watchlist, Orderlist };
+const models = { User, Order, Watchlist, Orderlist };
  
 export { connectDb };
  

@@ -7,6 +7,7 @@ const createUsers = async () => {
     first_name: 'Anthony',
     last_name: 'Kim',
     balance: 1000000,
+    holdings: {}
   });
   const user2 = new models.User({
     email: '2@email.com',
@@ -14,6 +15,7 @@ const createUsers = async () => {
     first_name: 'Kevin',
     last_name: 'Yu',
     balance: 800000,
+    holdings: {}
   });
   const user3 = new models.User({
     email: '3@email.com',
@@ -21,6 +23,7 @@ const createUsers = async () => {
     first_name: 'Dexter',
     last_name: 'Gb',
     balance: 700000,
+    holdings: {}
   });
 
   await user1.save();
