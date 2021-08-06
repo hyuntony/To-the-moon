@@ -77,6 +77,12 @@ const Breakdown = () => {
     const twoDec = (p) => {
       return Math.round(p*100)/100
     }
+
+  const showPriceChange = () => {
+    const priceNow = showPrice();
+    const priceChange = ((priceNow - state.quote.pc) / priceNow) * 100;
+    return priceChange.toFixed(2);
+  };
   return (
     <div className="details-breakdown">
       <img src={state.symbol.logo}></img>

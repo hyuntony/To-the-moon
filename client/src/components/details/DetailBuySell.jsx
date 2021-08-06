@@ -9,17 +9,17 @@ const DetailBuySell = ({ user }) => {
     const [value, setValue] = useState(0)
     const { symbol } = useParams();
     const [added, setAdded] = useState(0)
-    const addWatchlist = () => {
-        axios.post(`/api/watchlist`, { symbol, user })
-        // .then((res) => {console.log(res.data)})
-        .then(() => {setAdded(1)})
-    }
     axios.get(`/api/watchlist/${userId}/${symbol}`)
     .then((res)=>{
         if (res.data !== null) {
             setAdded(1)
         }
     })
+    const addWatchlist = () => {
+        axios.post(`/api/watchlist`, { symbol, user })
+        // .then((res) => {console.log(res.data)})
+        .then(() => {setAdded(1)})
+    }
     const removeWatchlist = () => {
         axios.post(`/api/watchlist/delete`, { symbol, user })
         // .then((res) => {console.log(res.data)})
