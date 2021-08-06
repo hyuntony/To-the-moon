@@ -32,9 +32,9 @@ const data = {
 const options = {
   legend: {
     display: false,
-    },
+  },
   title: {
-    display: false
+    display: false,
   },
   scales: {
     yAxes: [
@@ -48,43 +48,40 @@ const options = {
   elements: {
     point: {
       radius: 1,
-    }
-  }
+    },
+  },
 };
 
 const LineChart = () => {
-    const { symbol } = useParams();
-    const [data, setData] = useState({});
-      useEffect(() => {
-        axios.get(`/finn/${symbol}/candles`)
-        .then((res)=>{
-          const dateArray = res.data.t.map((number) => {
-            const date = new Date(number * 1000);
-            return date.toLocaleDateString('en-US');
-          })
-          
-          setData({
-                labels: dateArray,
-                datasets: [
-                  {
-                    
-                    label: 'Price',
-                    data: res.data.c,
-                    fill: false,
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'red',
-                    
-                  },
-                ],
-              });
-        })
-        }, [])
-    return (
-        <div>
-            <h1>Stock Detail</h1>
-            <Line data={data} options={options} width={1000} height={500} />
-        </div>
-    )
-}
+  const { symbol } = useParams();
+  const [data, setData] = useState({});
+  useEffect(() => {
+    axios.get(`/finn/${symbol}/candles`).then((res) => {
+      const dateArray = res.data.t.map((number) => {
+        const date = new Date(number * 1000);
+        return date.toLocaleDateString("en-US");
+      });
+
+      setData({
+        labels: dateArray,
+        datasets: [
+          {
+            label: "Price",
+            data: res.data.c,
+            fill: false,
+            backgroundColor: "rgb(255, 99, 132)",
+            borderColor: "red",
+          },
+        ],
+      });
+    });
+  }, []);
+  return (
+    <div>
+      <h1>Stock Detail</h1>
+      <Line data={data} options={options} width={1000} height={500} />
+    </div>
+  );
+};
 
 export default LineChart;

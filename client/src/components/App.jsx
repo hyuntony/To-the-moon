@@ -10,7 +10,6 @@ import Details from "./Details";
 import History from "./History";
 import About from "./About";
 
-
 import "./App.scss";
 
 const finnhub = require("finnhub");
@@ -22,17 +21,15 @@ const App = () => {
   const [user, setUser] = useState("");
 
   const login = (email) => {
-    axios.post("/user/login", { email })
-      .then((res) => setUser(res.data));
+    axios.post("/user/login", { email }).then((res) => setUser(res.data));
   };
 
   const logout = () => {
     setUser(null);
-  }
+  };
 
   return (
     <Router>
-      
       <div className="App">
         <header>
           {/* <Nav loggedIn={user} /> */}
@@ -45,8 +42,7 @@ const App = () => {
               {user && <Home />}
             </Route>
             <Route path="/details/:symbol">
-              {user && <Details user={user} />}
-              {!user && <h1>Please Login</h1>}
+              <Details user={user} />
             </Route>
             <Route path="/history">
               <History />

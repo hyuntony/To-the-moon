@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useState, useEffect } from "react";
+import Button from "@material-ui/core/Button";
 import { useParams } from "react-router-dom";
-import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+import TextField from "@material-ui/core/TextField";
+import axios from "axios";
 
 const DetailBuySell = ({ user }) => {
     const userId = user._id
@@ -67,4 +67,4 @@ const whichButton = () => {
     )
 }
 
-export default DetailBuySell
+export default DetailBuySell;

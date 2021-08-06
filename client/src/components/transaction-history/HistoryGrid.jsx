@@ -1,83 +1,124 @@
 import * as React from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import { useDemoData } from "@material-ui/x-grid-data-generator";
-import { createTheme, darken, lighten } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import "./HistoryGrid.scss";
 
-const getThemePaletteMode = function (palette) {
-  return palette.type || palette.mode;
-};
-
-const defaultTheme = createTheme();
-const useStyles = makeStyles(
-  (theme) => {
-    const getBackgroundColor = (color) =>
-      getThemePaletteMode(theme.palette) === "dark"
-        ? darken(color, 0.6)
-        : lighten(color, 0.6);
-
-    const getHoverBackgroundColor = (color) =>
-      getThemePaletteMode(theme.palette) === "dark"
-        ? darken(color, 0.5)
-        : lighten(color, 0.5);
-
-    return {
-      root: {
-        "& .super-app-theme--Open": {
-          backgroundColor: getBackgroundColor(theme.palette.info.main),
-          "&:hover": {
-            backgroundColor: getHoverBackgroundColor(theme.palette.info.main),
-          },
-        },
-        "& .super-app-theme--Filled": {
-          backgroundColor: getBackgroundColor(theme.palette.success.main),
-          "&:hover": {
-            backgroundColor: getHoverBackgroundColor(
-              theme.palette.success.main
-            ),
-          },
-        },
-        "& .super-app-theme--PartiallyFilled": {
-          backgroundColor: getBackgroundColor(theme.palette.warning.main),
-          "&:hover": {
-            backgroundColor: getHoverBackgroundColor(
-              theme.palette.warning.main
-            ),
-          },
-        },
-        "& .super-app-theme--Rejected": {
-          backgroundColor: getBackgroundColor(theme.palette.error.main),
-          "&:hover": {
-            backgroundColor: getHoverBackgroundColor(theme.palette.error.main),
-          },
-        },
-      },
-    };
+const columns = [
+  {
+    field: "Date",
+    width: 120,
+    valueFormatter: ({ value }) => `${value}`,
   },
-  { defaultTheme }
-);
+  { field: "Name", width: 120 },
+  {
+    field: "Price",
+    type: "number",
+    width: 120,
+    valueFormatter: ({ value }) => `$${value}`,
+    sortable: false,
+  },
+  {
+    field: "Shares",
+    type: "number",
+    width: 120,
+    valueFormatter: ({ value }) => `${value}`,
+    sortable: false,
+  },
+  {
+    field: "buySell",
+    headerName: "Bought/Sold",
+    width: 160,
+    valueFormatter: ({ value }) => `${value}`,
+    sortable: false,
+  },
+  {
+    field: "Status",
+    width: 120,
+    valueFormatter: ({ value }) => `${value}`,
+    sortable: false,
+  },
+];
 
-export default function StylingRowsGrid() {
+const rows = [
+  {
+    id: 1,
+    Name: "AAPL",
+    Price: 7.1,
+    Status: "Pending",
+    Shares: -10,
+    Date: "Jan 1, 2021",
+    buySell: "Bought",
+  },
+  {
+    id: 2,
+    Name: "GOOGL",
+    Price: 14.9,
+    Status: "Filled",
+    Shares: 18.2,
+    Date: "Jan 1, 2021",
+    buySell: "Sold",
+  },
+  {
+    id: 3,
+    Name: "MSFT",
+    Price: 8.1,
+    Status: "Pending",
+    Shares: 12.3,
+    Date: "Jan 1, 2021",
+    buySell: "Sold",
+  },
+  {
+    id: 4,
+    Name: "TSLA",
+    Price: 20.2,
+    Status: "Filled",
+    Shares: 19.2,
+    Date: "Jan 1, 2021",
+    buySell: "Bought",
+  },
+];
+
+const useStyles = makeStyles({
+  root: {
+    "& .green": {
+      backgroundColor: "#00e676",
+      color: "#1a3e72",
+    },
+    "& .red": {
+      backgroundColor: "#ff1744",
+      color: "#1a3e72",
+    },
+    "& .yellow": {
+      backgroundColor: "#ffea00",
+      color: "#1a3e72",
+    },
+  },
+});
+
+export default function StylingAllCells() {
   const classes = useStyles();
-
-  const { data } = useDemoData({
-    dataSet: "Commodity",
-    rowLength: 50,
-  });
 
   return (
     <div>
       <h1 className="history-title">Order History</h1>
-      <div style={{ height: 800, width: "100%" }} className={classes.root}>
+      <div style={{ height: 400, width: "100%" }} className={classes.root}>
         <DataGrid
-          {...data}
-          getRowClassName={(params) =>
-            `super-app-theme--${params.getValue(params.id, "status")}`
-          }
+          rows={rows}
+          columns={columns}
+          getCellClassName={(params) => {
+            if (params.field === "Date") {
+              return "";
+            }
+            if (params.value === "Pending") {
+              return "yellow";
+            }
+            if (params.value === "Bought") {
+              return "green";
+            }
+            return params.value === "Sold" ? "red" : "";
+          }}
         />
       </div>
-      <footer className="history-footer">this is a footer</footer>
     </div>
   );
 }

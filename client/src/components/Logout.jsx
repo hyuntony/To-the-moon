@@ -36,15 +36,13 @@ const Logout = ({ user, login, logout }) => {
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
           <ul className={click ? "logout-menu active" : "logout-menu"}>
-          {user && <li className="logout-item">
-              <Link
-                to="/"
-                className="logout-links"
-                onClick={closeMobileMenu}
-              >
-                Portfolio
-              </Link>
-            </li>}
+            {user && (
+              <li className="logout-item">
+                <Link to="/" className="logout-links" onClick={closeMobileMenu}>
+                  Portfolio
+                </Link>
+              </li>
+            )}
             <li className="logout-item">
               <Link
                 to="/about"
@@ -54,47 +52,54 @@ const Logout = ({ user, login, logout }) => {
                 About Us
               </Link>
             </li>
-            {user && <li className="logout-item">
-              <Link
-                to="/history"
-                className="logout-links"
-                onClick={closeMobileMenu}
-              >
-                Order History
-              </Link>
-            </li>}
-            {!user && <li className="logout-item">
-              <Link
-                className="logout-links"
-                onClick={() => login('1@email.com')}
-              >
-                Login 1
-              </Link>
-              </li>}
-              {!user && <li className="logout-item">
-              <Link
-                className="logout-links"
-                onClick={() => login('2@email.com')}
-              >
-                Login 2
-              </Link>
-              </li>}
-              {!user && <li className="logout-item">
-              <Link
-                className="logout-links"
-                onClick={() => login('3@email.com')}
-              >
-                Login 3
-              </Link>
-              </li>}
-          {user && <li className="logout-item">
-              <Link to='/'
-                className="logout-links"
-                onClick={() => logout()}
-              >
-                Logout
-              </Link>
-              </li>}
+            {user && (
+              <li className="logout-item">
+                <Link
+                  to="/history"
+                  className="logout-links"
+                  onClick={closeMobileMenu}
+                >
+                  Order History
+                </Link>
+              </li>
+            )}
+            {!user && (
+              <li className="logout-item">
+                <Link
+                  className="logout-links"
+                  onClick={() => login("1@email.com")}
+                >
+                  Login 1
+                </Link>
+              </li>
+            )}
+            {!user && (
+              <li className="logout-item">
+                <Link
+                  className="logout-links"
+                  onClick={() => login("2@email.com")}
+                >
+                  Login 2
+                </Link>
+              </li>
+            )}
+            {!user && (
+              <li className="logout-item">
+                <Link
+                  className="logout-links"
+                  onClick={() => login("3@email.com")}
+                >
+                  Login 3
+                </Link>
+              </li>
+            )}
+            {user && (
+              <li className="logout-item">
+                <Link to="/" className="logout-links" onClick={() => logout()}>
+                  Logout
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
