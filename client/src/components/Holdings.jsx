@@ -4,91 +4,117 @@ import { makeStyles } from "@material-ui/core/styles";
 import "./Holdings.scss";
 
 const columns = [
-  { field: "id" },
-  { field: "Name", width: 120 },
+  { field: "name", headerName: "Name", width: 120 },
+  { field: "order", headerName: "Buy/Sell", width: 130 },
   {
-    field: "Price",
+    field: "quantity",
+    headerName: "Quantity",
+    type: "number",
+    width: 130,
+    valueFormatter: ({ value }) => `${value}`,
+  },
+  {
+    field: "price",
+    headerName: "Price",
     type: "number",
     width: 120,
     valueFormatter: ({ value }) => `$${value}`,
   },
   {
-    field: "Shares",
+    field: "avgCost",
+    headerName: "Avg Cost",
     type: "number",
-    width: 120,
-    valueFormatter: ({ value }) => `${value}`,
-  },
-  {
-    field: "buySell",
-    headerName: "Bought/Sold",
     width: 160,
-    valueFormatter: ({ value }) => `${value}`,
+    valueFormatter: ({ value }) => `$${value}`,
   },
   {
-    field: "Status",
-    width: 120,
-    valueFormatter: ({ value }) => `${value}`,
-  },
-  {
-    field: "Date",
+    field: "mktValue",
+    headerName: "Mkt Value",
     type: "number",
-    width: 120,
-    valueFormatter: ({ value }) => `${value}`,
+    width: 140,
+    valueFormatter: ({ value }) => `$${value}`,
+  },
+  {
+    field: "bookCost",
+    headerName: "Book Cost",
+    type: "number",
+    width: 140,
+    valueFormatter: ({ value }) => `$${value}`,
+  },
+  {
+    field: "gainLoss",
+    headerName: "Gain/Loss Unrealized",
+    type: "number",
+    width: 210,
+    valueFormatter: ({ value }) => `$${value}`,
+  },
+  {
+    field: "percentage",
+    headerName: "% of Portfolio",
+    type: "number",
+    width: 170,
+    valueFormatter: ({ value }) => `${value}%`,
   },
 ];
 
 const rows = [
   {
     id: 1,
-    Name: "AAPL",
-    Price: 7.1,
-    Status: "Pending",
-    Shares: -10,
-    Date: "Jan 1, 2021",
-    buySell: "Bought",
+    name: "AAPL",
+    order: "Buy/Sell",
+    quantity: 7.1,
+    price: 10,
+    avgCost: 100,
+    mktValue: 500,
+    bookCost: 300,
+    gainLoss: 800,
+    percentage: 20,
   },
   {
     id: 2,
-    Name: "GOOGL",
-    Price: 14.9,
-    Status: "Filled",
-    Shares: 18.2,
-    Date: "Jan 1, 2021",
-    buySell: "Sold",
+    name: "GOOGL",
+    order: "Buy/Sell",
+    quantity: 14.9,
+    price: 18.2,
+    avgCost: 100,
+    mktValue: 500,
+    bookCost: 300,
+    gainLoss: -400,
+    percentage: 20,
   },
   {
     id: 3,
-    Name: "MSFT",
-    Price: 8.1,
-    Status: "Pending",
-    Shares: 12.3,
-    Date: "Jan 1, 2021",
-    buySell: "Sold",
+    name: "MSFT",
+    order: "Buy/Sell",
+    quantity: 8.1,
+    price: 12.3,
+    avgCost: 100,
+    mktValue: 500,
+    bookCost: 300,
+    gainLoss: 800,
+    percentage: 20,
   },
   {
     id: 4,
-    Name: "TSLA",
-    Price: 20.2,
-    Status: "Filled",
-    Shares: 19.2,
-    Date: "Jan 1, 2021",
-    buySell: "Bought",
+    name: "TSLA",
+    order: "Buy/Sell",
+    quantity: 20.2,
+    price: 19.2,
+    avgCost: 100,
+    mktValue: 500,
+    bookCost: 300,
+    gainLoss: 200,
+    percentage: 40,
   },
 ];
 
 const useStyles = makeStyles({
   root: {
     "& .green": {
-      backgroundColor: "#00e676",
-      color: "#1a3e72",
+      color: "#00e676",
     },
     "& .red": {
-      backgroundColor: "#ff1744",
-      color: "#1a3e72",
-    },
-    "& .yellow": {
-      backgroundColor: "#ffea00",
-      color: "#1a3e72",
+      color: "red",
     },
   },
 });
@@ -104,13 +130,10 @@ export default function StylingAllCells() {
           rows={rows}
           columns={columns}
           getCellClassName={(params) => {
-            if (params.field === "id") {
-              return "";
+            if (params.field === "gainLoss" && Number(params.value) >= 0) {
+              return "green";
             }
-            if (params.value === "Pending") {
-              return "yellow";
-            }
-            return params.value === "Sold" ? "red" : "green";
+            return Number(params.value) <= 0 ? "red" : "";
           }}
         />
       </div>
