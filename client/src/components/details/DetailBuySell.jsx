@@ -55,7 +55,11 @@ const whichButton = () => {
 }
     return (
         <div className='buy-sell-func'>
-      <TextField id="outlined-basic" type='text' label="Outlined" variant="outlined" onChange={event => setValue(event.target.value)}/>
+            <div className='details-buttons'>
+
+      <TextField id="outlined-basic" type='text' label="Quantity" variant="outlined" onChange={event => setValue(event.target.value)}/>
+      </div>
+      <div className='details-buttons'>
       {whichButton()}
             <Button variant="outlined" color="primary" value={value} onClick={buyOnClick}>
                 Buy
@@ -63,6 +67,7 @@ const whichButton = () => {
             <Button variant="outlined" color="primary" onClick={sellOnClick}>
                 Sell
             </Button>
+            </div>
         </div>
     )
 }

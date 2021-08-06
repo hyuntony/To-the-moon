@@ -1,4 +1,5 @@
 // import dotenv from "dotenv";
+import { red } from "@material-ui/core/colors";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -72,7 +73,7 @@ const Breakdown = () => {
       }
     }
     const format = (p) => {
-      return `${(p/1000000).toFixed(2)}M`
+      return `${(p/1000).toFixed(2)}B`
     }
     const twoDec = (p) => {
       return Math.round(p*100)/100
@@ -83,13 +84,21 @@ const Breakdown = () => {
     const priceChange = ((priceNow - state.quote.pc) / priceNow) * 100;
     return priceChange.toFixed(2);
   };
+  const color = (p)=>{
+    if (p > 0) {
+      return {color: 'green'}
+    } else {
+      return {color: 'red'}
+    }
+  }
   return (
     <div className="details-breakdown">
-      <img src={state.symbol.logo}></img>
+      {state.symbol.logo? <img src={state.symbol.logo}></img> : null}
+  
       <h1>{state.symbol.name}</h1>
       <p>{state.symbol.ticker}</p>
       <div><p>Current Price:</p><p>${showPrice()}</p></div>
-      <div><p>Percentage Price Change:</p><p>{showPriceChange()}%</p></div>
+      <div><p>Percentage Price Change:</p><p style={color(showPriceChange())}>{showPriceChange()}%</p></div>
       <div><p>Market Capitalization:</p><p>${format(state.symbol.marketCapitalization)}</p></div>
       <div><p>Share Outstanding:</p><p>{twoDec(state.symbol.shareOutstanding)}M</p></div>
       <div><p>Average Daily Volume (10 Day):</p><p>{twoDec(state.financial['10DayAverageTradingVolume'])}M</p></div>

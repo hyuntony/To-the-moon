@@ -1,15 +1,21 @@
+html {
+    background-color: black;
+}
 .details {
     display: flex;
     flex-direction: column;
-    margin-top: 250px;
-    color: black;
+    color: rgb(43, 37, 37);
+    background-color: whitesmoke;
+    padding-top: 5em
 }
 .details-breakdown {
     color: black;
     font-size: 20px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
+    background-color: whitesmoke;
+    padding: 5em 5em 0em 5em;
 }
 .details-breakdown div {
     display: flex;
@@ -25,9 +31,20 @@
     height: 100%;
 }
 
-.details-buttons {
+.buy-sell-func {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: whitesmoke;
+    justify-content: flex-end;
+    padding: 0em 1em 0em 0em;
+}
+.details-buttons{
     display: flex;
     flex-direction: row;
-    width: 70%;
     justify-content: flex-end;
+    padding: 5px;
+}
+.details-buttons button {
+   margin: 0px 0px 0px 5px
 }
