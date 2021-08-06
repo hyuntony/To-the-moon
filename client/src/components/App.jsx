@@ -42,7 +42,8 @@ const App = () => {
               {user && <Home />}
             </Route>
             <Route path="/details/:symbol">
-              <Details user={user} />
+              {user && <Details user={user} />}
+              {!user && <h1 className='login-message'>Please Login!</h1>}
             </Route>
             <Route path="/history">
               <History />
