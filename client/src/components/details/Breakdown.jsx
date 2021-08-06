@@ -3,8 +3,8 @@ import { red } from "@material-ui/core/colors";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-const Breakdown = () => {
+import DetailBuySell from "./DetailBuySell";
+const Breakdown = ({user}) => {
   const { symbol } = useParams();
   const [price, setPrice] = useState(0);
   const [state, setState] = useState({
@@ -92,11 +92,11 @@ const Breakdown = () => {
     }
   }
   return (
+    <>
     <div className="details-breakdown">
       {state.symbol.logo? <img src={state.symbol.logo}></img> : null}
-  
       <h1>{state.symbol.name}</h1>
-      <p>{state.symbol.ticker}</p>
+      <p className='details-ticker'>{state.symbol.ticker}</p>
       <div><p>Current Price:</p><p>${showPrice()}</p></div>
       <div><p>Percentage Price Change:</p><p style={color(showPriceChange())}>{showPriceChange()}%</p></div>
       <div><p>Market Capitalization:</p><p>${format(state.symbol.marketCapitalization)}</p></div>
@@ -105,12 +105,9 @@ const Breakdown = () => {
       <div><p>52 Week High:</p><p>${weekHigh(state.financial['52WeekHigh'])}</p></div>
       <div><p>52 Week Low:</p><p>${weekLow(state.financial['52WeekLow'])}</p></div>
     </div>
+    <DetailBuySell user={user} price={price}/>
+    </>
   );
 };
 
 export default Breakdown;
-
-// currently on the details page. marketcap, share outstanding, and avg daily volume is displayed in Millions
-// maybe reflect that
-// and just rename 'daily trading volume' to 'average daily volume'
-// and if you could have the 52week high and low change if the current prices breaks new high or low. that would be great

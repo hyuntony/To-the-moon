@@ -4,6 +4,7 @@ import models from '../models/index.js';
 const router = express.Router();
 
 router.get('/watchlist/:id/:symbol', async (req, res) => {
+   
    const userId = req.params.id
    const symbol = req.params.symbol
 
