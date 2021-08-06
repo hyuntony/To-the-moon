@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
     last_name: { type: String },
     balance: { type: Number },
     watchlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Watchlist' }],
+    orderlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Orderlist' }]
   },
   { timestamps: true },
 );
@@ -32,6 +33,7 @@ userSchema.statics.findByLogin = async function (login) {
 userSchema.pre('remove', function(next) {
   this.model('Message').deleteMany({ user: this._id }, next);
   this.model('Watchlist').deleteMany({ user: this._id }, next);
+  this.model('Orderlist').deleteMany({ user: this._id }, next);
 });
  
 const User = mongoose.model('User', userSchema);

@@ -9,6 +9,7 @@ router.get('/watchlist/:id/:symbol', async (req, res) => {
 
    const watchlists = await models.Watchlist.find().where({ user: userId, symbol: symbol})
    if (watchlists.length) {
+
       res.json(watchlists)
    } else {
       res.json(null);
@@ -35,7 +36,26 @@ router.post('/watchlist', async (req, res) => {
       });
    });
 });
-
+router.post('/buy', async (req, res) => {
+   const {symbol, user, action, quantity} = req.body;
+   const user1 = await models.User.findByLogin(user.email)
+   console.log(user1)
+   user1.save(function (err) {
+      if (err) res.status(500).json(err);
+      const orderlist = new models.Orderlist({
+         symbol: symbol,
+         user: user1._id,
+         action: action,
+         quantity: quantity
+      },);
+      orderlist.save(function (err) {
+      if (err) return res.status(500).json(err);
+      user1.orderlist.push(orderlist);
+      user1.save();
+      res.json('orderlist details added successfully')
+    });
+   });
+});
 router.post('/watchlist/delete', async (req, res) => {
    const { symbol, user } = req.body;
 
@@ -50,11 +70,26 @@ router.get('/', async (req, res) => {
       .populate('user')
    res.json(watchlist)
 })
-router.post('/:id/buy', (req, res) => {
-   console.log(req.body)
-});
-router.post('/:id/sell', (req, res) => {
-   console.log(req.body)
+
+router.post('/sell', async (req, res) => {
+   const {symbol, user, action, quantity} = req.body;
+   const user1 = await models.User.findByLogin(user.email)
+   console.log(user1)
+   user1.save(function (err) {
+      if (err) res.status(500).json(err);
+      const orderlist = new models.Orderlist({
+         symbol: symbol,
+         user: user1._id,
+         action: action,
+         quantity: quantity
+      },);
+      orderlist.save(function (err) {
+      if (err) return res.status(500).json(err);
+      user1.orderlist.push(orderlist);
+      user1.save();
+      res.json('orderlist details added successfully')
+    });
+   });
 });
 
 export default router;
