@@ -40,19 +40,19 @@ const DetailBuySell = ({ user, price }) => {
         
         if (value.length > 0 && value > 0) {
         const action = 'buy';
-        axios.post(`/api/buy`, {symbol: symbol, quantity: value, action: action, user, price: price})
-        .then(()=> {togglePopup(`Purchased ${value} Stocks`)})
+        axios.post(`/api/buy`, {symbol: symbol, quantity: Number(value), action: action, user, price: price})
+        // .then(()=> {togglePopup(`Purchased ${value} Stocks`)})
         .then((res) => {console.log(res.data)})
-        .then(() => console.log(`Buy: ${value} ${symbol} Stock!`))
+        // .then(() => console.log(`Buy: ${value} ${symbol} Stock!`))
         }
     }
     const sellOnClick = () => {
         if (value.length > 0 && value > 0) {
             const action = 'sell';
-            axios.post(`/api/sell`, {symbol: symbol, quantity: value, action: action, user, price: price})
-            .then(()=> {togglePopup(`Sold ${value} Stocks`)})
+            axios.post(`/api/sell`, {symbol: symbol, quantity: Number(value), action: action, user, price: price})
+            // .then(()=> {togglePopup(`Sold ${value} Stocks`)})
             .then((res) => {console.log(res.data)})
-            .then(() => console.log(`Sell: ${value} ${symbol} Stock!`))
+            // .then(() => console.log(`Sell: ${value} ${symbol} Stock!`))
             }
     }
 

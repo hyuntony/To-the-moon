@@ -74,6 +74,7 @@ router.post('/buy', async (req, res) => {
 
    order.save((err) => {
       if (err) return res.status(500).json(err);
+
       user1.balance = user1.balance - (price * quantity)
 
       if (!user1.holdings.get(symbol)) {
