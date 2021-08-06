@@ -19,7 +19,6 @@ const orderlistSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-orderlistSchema.index({ order: 1 }, { unique: true })
 const Orderlist = mongoose.model('Orderlist', orderlistSchema);
  
 export default Orderlist;
