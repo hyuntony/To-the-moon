@@ -40,6 +40,7 @@ connectDb().then(async () => {
       models.User.deleteMany({}),
       models.Watchlist.deleteMany({}),
       models.Message.deleteMany({}),
+      models.Orderlist.deleteMany({}),
     ]);
 
     createUsers();
