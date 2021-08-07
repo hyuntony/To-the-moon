@@ -16,6 +16,17 @@ router.get('/watchlist/:id/:symbol', async (req, res) => {
    }
 })
 
+router.get('/holdings/:id/:symbol', async (req, res) => {
+   const userId = req.params.id
+   const symbol = req.params.symbol
+   const holdings = await models.User.find().where({ user: userId, symbol: symbol})
+   if (holdings.length) {
+      res.json(holdings)
+   } else {
+      res.json(null);
+   }
+})
+
 router.post('/watchlist', async (req, res) => {
    const { symbol, user } = req.body;
    const user1 = await models.User.findByLogin(user.email)

@@ -66,7 +66,11 @@ const DetailBuySell = ({ user, price }) => {
         })
         .then((res) => {
           togglePopup();
-        });
+        })
+        .catch((err) => {
+            setIsOpen(!isOpen)
+            console.log(err.response.data);
+        })
       // .then(() => console.log(`Buy: ${value} ${symbol} Stock!`))
     }
   };
@@ -93,7 +97,11 @@ const DetailBuySell = ({ user, price }) => {
         })
         .then(() => {
           togglePopup();
-        });
+        })
+        .catch((err) => {
+            setIsOpen(!isOpen)
+            console.log(err.response.data);
+        })
       // .then(() => console.log(`Sell: ${value} ${symbol} Stock!`))
     }
   };
