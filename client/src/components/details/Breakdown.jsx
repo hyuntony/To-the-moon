@@ -18,21 +18,22 @@ const Breakdown = ({ user }) => {
       axios.get(`/finn/${symbol}/financials`),
       axios.get(`/finn/${symbol}/quote`),
     ])
-      .then((all) => {
-        const [symbol, financial, quote] = all;
-        setState((prev) => {
-          return {
-            ...prev,
-            symbol: symbol.data,
-            financial: financial.data,
-            quote: quote.data,
-          };
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    .then((all) => {
+      const [symbol, financial, quote] = all;
+      setState((prev) => {
+        return {
+          ...prev,
+          symbol: symbol.data,
+          financial: financial.data,
+          quote: quote.data,
+        };
       });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }, []);
+  
   const currentPrice = state.quote.c;
   useEffect(() => {
     const socket = new WebSocket("ws:localhost:3001/");
@@ -126,7 +127,7 @@ const Breakdown = ({ user }) => {
           <p>${weekLow(state.financial["52WeekLow"])}</p>
         </div>
       </div>
-      <DetailBuySell user={user} price={price} />
+      <DetailBuySell user={user} price={showPrice()} />
     </>
   );
 };
