@@ -3,6 +3,7 @@ import models from '../models/index.js';
 
 const router = express.Router();
 
+// route to check if the symbol has been watchlisted by the user
 router.get('/watchlist/:id/:symbol', async (req, res) => {
    
    const userId = req.params.id
@@ -14,8 +15,17 @@ router.get('/watchlist/:id/:symbol', async (req, res) => {
    } else {
       res.json(null);
    }
-})
+});
 
+// route for pulling out all the watchlists for the user
+router.get('/watchlist/:id', async ( req, res ) => {
+   const userId = req.params.id
+
+   const watchlists = await models.Watchlist.find().where({ user: userId })
+   return res.json(watchlists)
+});
+
+// route to add watchlist to the user
 router.post('/watchlist', async (req, res) => {
    const { symbol, user } = req.body;
    const user1 = await models.User.findByLogin(user.email)
@@ -30,8 +40,6 @@ router.post('/watchlist', async (req, res) => {
     
       watchlist.save(function (err) {
         if (err) return res.status(500).json(err);
-        user1.watchlist.push(watchlist);
-        user1.save();
         res.json('watchlist details added successfully')
       });
    });

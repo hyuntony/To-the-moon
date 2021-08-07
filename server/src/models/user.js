@@ -12,7 +12,6 @@ const userSchema = new mongoose.Schema(
     first_name: { type: String },
     last_name: { type: String },
     balance: { type: Number },
-    watchlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Watchlist' }],
     holdings: { 
       type: Map,
       of: Number
@@ -34,7 +33,7 @@ userSchema.statics.findByLogin = async function (login) {
 };
  
 userSchema.pre('remove', function(next) {
-  this.model('Message').deleteMany({ user: this._id }, next);
+  this.model('Order').deleteMany({ user: this._id }, next);
   this.model('Watchlist').deleteMany({ user: this._id }, next);
   this.model('Orderlist').deleteMany({ user: this._id }, next);
 });
