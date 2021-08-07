@@ -18,12 +18,44 @@ router.get('/watchlist/:id/:symbol', async (req, res) => {
 });
 
 // route for pulling out all the watchlists for the user
-router.get('/watchlist/:id', async ( req, res ) => {
+router.get('/watchlist/:id', async (req, res) => {
    const userId = req.params.id
 
    const watchlists = await models.Watchlist.find().where({ user: userId })
    return res.json(watchlists)
 });
+
+// endpoint to retrieve the average price for the shares owned
+router.get('/average/:id/:symbol/:quantity', async (req, res) => {
+   const userId = req.params.id;
+   const symbol = req.params.symbol;
+   let quantity = Number(req.params.quantity);
+
+   const orders = await models.Order.find().where({
+      user: userId,
+      action: 'buy',
+      symbol: symbol,
+      open: true
+   }).sort({ createdAt: 'desc' })
+
+   let i = 0;
+   let totals = 0;
+   while (quantity > 0) {
+      if (!orders[i]) {
+         return res.status(500).json('Insufficient record of purchase')
+      }
+      if (quantity >= orders[i].shares) {
+         totals += orders[i].shares * orders[i].price;
+         quantity -= orders[i].shares;
+      } else if (quantity < orders[i].shares) {
+         totals += orders[i].price * quantity;
+         quantity -= orders[i].shares;
+      }
+      i++;
+   }
+   const average = totals / Number(req.params.quantity);
+   res.json(average);
+})
 
 // route to add watchlist to the user
 router.post('/watchlist', async (req, res) => {
@@ -135,5 +167,6 @@ router.post('/short', async (req, res) => {
 router.post('/cover', async (req, res) => {
    res.json("hello");
 });
+
 
 export default router;
