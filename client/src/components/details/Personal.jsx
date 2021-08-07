@@ -9,7 +9,6 @@ balance: 0
   })
   // const [balance, setBalance]=useState(0)
   const email = user.email
-  
   useEffect(()=>{
     axios.get('/user/user', {email})
     .then((res)=>{
