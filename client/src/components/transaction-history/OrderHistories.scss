@@ -1,0 +1,16 @@
+.order-history {
+    display: flex;
+    flex-direction: column;
+}
+
+.each-order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.orders-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

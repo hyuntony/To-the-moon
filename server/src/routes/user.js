@@ -20,4 +20,11 @@ router.get('/user', async (req, res) => {
   const user = await models.User.findOne(email)
   res.json(user);
 });
+
+router.get('/history/:id', async ( req, res ) => {
+  const userId = req.params.id
+
+  const orders = await models.Order.find().where({ user: userId })
+  return res.json(orders)
+});
 export default router;
