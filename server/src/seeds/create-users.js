@@ -106,6 +106,14 @@ const createUsers = async () => {
     open: true,
     user: user1
  });
+  const order13 = new models.Order({
+    symbol: 'XOM',
+    price: 59.99,
+    shares: 200,
+    action: 'sell',
+    open: false,
+    user: user1
+ });
   
   const watchlist1 = new models.Watchlist({
     user: user1,
@@ -182,6 +190,7 @@ const createUsers = async () => {
   await order10.save();
   await order11.save();
   await order12.save();
+  await order13.save();
 }
 
 export { createUsers };
