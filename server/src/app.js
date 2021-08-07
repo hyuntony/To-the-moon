@@ -39,7 +39,7 @@ connectDb().then(async () => {
     await Promise.all([
       models.User.deleteMany({}),
       models.Watchlist.deleteMany({}),
-      models.Message.deleteMany({}),
+      models.Order.deleteMany({}),
       models.Orderlist.deleteMany({}),
     ]);
 

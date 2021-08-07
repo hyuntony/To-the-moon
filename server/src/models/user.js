@@ -13,7 +13,10 @@ const userSchema = new mongoose.Schema(
     last_name: { type: String },
     balance: { type: Number },
     watchlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Watchlist' }],
-    orderlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Orderlist' }]
+    holdings: { 
+      type: Map,
+      of: Number
+    },
   },
   { timestamps: true },
 );
