@@ -55,7 +55,18 @@ router.get('/average/:id/:symbol/:quantity', async (req, res) => {
    }
    const average = totals / Number(req.params.quantity);
    res.json(average);
-})
+});
+
+router.get('/holdings/:id/:symbol', async (req, res) => {
+   const userId = req.params.id
+   const symbol = req.params.symbol
+   const holdings = await models.User.find().where({ user: userId, symbol: symbol})
+   if (holdings.length) {
+      res.json(holdings)
+   } else {
+      res.json(null);
+   }
+});
 
 // route to add watchlist to the user
 router.post('/watchlist', async (req, res) => {

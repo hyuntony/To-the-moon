@@ -46,7 +46,7 @@ const App = () => {
               {!user && <h1 className='login-message'>Please Login!</h1>}
             </Route>
             <Route path="/history">
-              <History />
+              <History user={user}/>
             </Route>
             <Route path="/about">
               <About />

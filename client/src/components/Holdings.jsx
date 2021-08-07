@@ -2,6 +2,7 @@ import * as React from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { makeStyles } from "@material-ui/core/styles";
 import "./Holdings.scss";
+import axios from "axios";
 
 const columns = [
   { field: "name", headerName: "Name", width: 120 },
