@@ -15,7 +15,7 @@ balance: 0
     .then((res)=>{
     setPersonal({holding: res.data.holdings[symbol], balance: res.data.balance})
     })
-  },[])
+  },[personal])
   return (
     <div className="details-breakdown">
       <h1>My Portfolio</h1>
