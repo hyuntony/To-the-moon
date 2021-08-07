@@ -39,7 +39,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact>
               {!user && <Intro />}
-              {user && <Home />}
+              {user && <Home user={user}/>}
             </Route>
             <Route path="/details/:symbol">
               {user && <Details user={user} />}

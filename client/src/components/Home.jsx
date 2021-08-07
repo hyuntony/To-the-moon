@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = () => {
+const Home = ({user}) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -34,7 +34,7 @@ const Home = () => {
           <Holdings />
         </Grid>
         <Grid item xs={2}>
-          <Watchlist />
+          <Watchlist user={user}/>
         </Grid>
       </Grid>
     </div>

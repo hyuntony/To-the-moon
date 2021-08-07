@@ -5,10 +5,8 @@ const router = express.Router();
 
 // route to check if the symbol has been watchlisted by the user
 router.get('/watchlist/:id/:symbol', async (req, res) => {
-   
    const userId = req.params.id
    const symbol = req.params.symbol
-
    const watchlists = await models.Watchlist.find().where({ user: userId, symbol: symbol})
    if (watchlists.length) {
       res.json(watchlists)
@@ -20,7 +18,6 @@ router.get('/watchlist/:id/:symbol', async (req, res) => {
 // route for pulling out all the watchlists for the user
 router.get('/watchlist/:id', async ( req, res ) => {
    const userId = req.params.id
-
    const watchlists = await models.Watchlist.find().where({ user: userId })
    return res.json(watchlists)
 });
