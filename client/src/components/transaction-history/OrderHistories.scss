@@ -1,16 +1,26 @@
 .order-history {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    padding: 2em;
 }
 
 .each-order {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width:100%;
+    border: 0.1em solid black;
 }
 
 .orders-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.each-detail{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+   width:100%;
 }
