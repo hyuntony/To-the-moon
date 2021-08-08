@@ -35,7 +35,7 @@ const list = array.map(each => {
   return (
     <div>
       <h4 className="watchlist-title">Watchlist</h4>
-      <Grid container justify={"center"}>
+      <Grid container justifyContent={"center"}>
         <Grid item xs={10} md={10} className={"flex-col-scroll"}>
           <Paper style={{ overflowX: "auto" }}>
             <Table>

@@ -1,114 +1,10 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { makeStyles } from "@material-ui/core/styles";
 import "./Holdings.scss";
 import axios from "axios";
 
-const columns = [
-  { field: "name", headerName: "Name", width: 120 },
-  { field: "order", headerName: "Buy/Sell", width: 130 },
-  {
-    field: "quantity",
-    headerName: "Quantity",
-    type: "number",
-    width: 130,
-    valueFormatter: ({ value }) => `${value}`,
-  },
-  {
-    field: "price",
-    headerName: "Price",
-    type: "number",
-    width: 120,
-    valueFormatter: ({ value }) => `$${value}`,
-  },
-  {
-    field: "avgCost",
-    headerName: "Avg Cost",
-    type: "number",
-    sortable: false,
-    width: 120,
-    valueFormatter: ({ value }) => `$${value}`,
-  },
-  {
-    field: "mktValue",
-    headerName: "Mkt Value",
-    type: "number",
-    width: 140,
-    valueFormatter: ({ value }) => `$${value}`,
-  },
-  {
-    field: "bookCost",
-    headerName: "Book Cost",
-    type: "number",
-    width: 140,
-    valueFormatter: ({ value }) => `$${value}`,
-  },
-  {
-    field: "gainLoss",
-    headerName: "Gain/Loss Unrealized",
-    type: "number",
-    width: 210,
-    valueFormatter: ({ value }) => `$${value}`,
-  },
-  {
-    field: "percentage",
-    headerName: "% of Portfolio",
-    type: "number",
-    width: 170,
-    valueFormatter: ({ value }) => `${value}%`,
-  },
-];
-
-const rows = [
-  {
-    id: 1,
-    name: "AAPL",
-    order: "Buy/Sell",
-    quantity: 7.1,
-    price: 10,
-    avgCost: 100,
-    mktValue: 500,
-    bookCost: 300,
-    gainLoss: 800,
-    percentage: 20,
-  },
-  {
-    id: 2,
-    name: "GOOGL",
-    order: "Buy/Sell",
-    quantity: 14.9,
-    price: 18.2,
-    avgCost: 100,
-    mktValue: 500,
-    bookCost: 300,
-    gainLoss: -400,
-    percentage: 20,
-  },
-  {
-    id: 3,
-    name: "MSFT",
-    order: "Buy/Sell",
-    quantity: 8.1,
-    price: 12.3,
-    avgCost: 100,
-    mktValue: 500,
-    bookCost: 300,
-    gainLoss: 800,
-    percentage: 20,
-  },
-  {
-    id: 4,
-    name: "TSLA",
-    order: "Buy/Sell",
-    quantity: 20.2,
-    price: 19.2,
-    avgCost: 100,
-    mktValue: 500,
-    bookCost: 300,
-    gainLoss: 200,
-    percentage: 40,
-  },
-];
 
 const useStyles = makeStyles({
   root: {
@@ -121,8 +17,88 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StylingAllCells() {
+export default function Holdings({ user, totalPort, setTotalPort }) {
   const classes = useStyles();
+  const [rows, setRows] = useState([]);
+  const totPort = totalPort
+
+  const columns = [
+    { field: "name", headerName: "Name", width: 120 },
+    {
+      field: "quantity",
+      headerName: "Quantity",
+      type: "number",
+      width: 130,
+      valueFormatter: ({ value }) => `${value}`,
+    },
+    {
+      field: "avgPrice",
+      headerName: "Avg Price",
+      type: "number",
+      width: 120,
+      valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
+    },
+    {
+      field: "currentPrice",
+      headerName: "Current Price",
+      type: "number",
+      sortable: false,
+      width: 120,
+      valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
+    },
+    {
+      field: "gainLoss",
+      headerName: "Gain/Loss Unrealized",
+      type: "number",
+      width: 210,
+      valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
+    },
+    {
+      field: "mrkValue",
+      headerName: "Market Value",
+      type: "number",
+      width: 210,
+      valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
+    },
+    {
+      field: "percentage",
+      headerName: "% of Portfolio",
+      type: "number",
+      width: 170,
+      valueFormatter: ({ value }) => `${((value / totPort) * 100).toFixed(2)}%`,
+    },
+  ];
+
+  useEffect(() => {
+    for (const symbol in user.holdings) {
+      Promise.all([
+        axios.get(`/finn/${symbol}/quote`),
+        axios.get(`/api/average/${user._id}/${symbol}/${user.holdings[symbol]}`)
+      ])
+        .then((all) => {
+          const [quote, average] = all;
+          setTotalPort((prev) => {
+            return prev + (quote.data.c * user.holdings[symbol])
+          })
+          const row = {
+            id: symbol,
+            name: symbol,
+            quantity: user.holdings[symbol],
+            avgPrice: average.data,
+            currentPrice: quote.data.c,
+            gainLoss: (quote.data.c - average.data) * user.holdings[symbol],
+            mrkValue: (quote.data.c * user.holdings[symbol]),
+            percentage: (quote.data.c * user.holdings[symbol])
+          }
+          setRows(prev => [...prev, row])
+        })
+    }
+
+    return () => {
+      setRows([]);
+      setTotalPort(0);
+    }
+  },[])
 
   return (
     <div>

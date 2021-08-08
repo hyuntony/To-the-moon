@@ -35,11 +35,14 @@ const createData = function (balance, investments, cash, date) {
   return { balance, investments, cash, date };
 };
 
-export default function AccountInfo({ user }) {
+export default function AccountInfo({ user, totalPort }) {
   const classes = useStyles();
   const cashBalance = user.balance
   const today = new Date().toISOString().split('T')[0]
-  const rows = [createData(100000, 95000, cashBalance, today)];
+  const totPort = totalPort
+  const totBal = totPort + cashBalance
+
+  const rows = [createData(totBal, totPort, cashBalance, today)];
 
   return (
     <div>

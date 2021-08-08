@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -24,14 +24,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = ({user}) => {
+  const [totalPort, setTotalPort] = useState(0);
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Search />
       <Grid container spacing={3}>
         <Grid item xs={10}>
-          <AccountInfo user={user} />
-          <Holdings />
+          <AccountInfo user={user} totalPort={totalPort} />
+          <Holdings user={user} totalPort={totalPort} setTotalPort={setTotalPort} />
         </Grid>
         <Grid item xs={2}>
           <Watchlist user={user}/>
