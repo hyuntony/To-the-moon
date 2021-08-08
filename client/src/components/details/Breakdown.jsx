@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import LineChart from "./LineChart";
 
 const Breakdown = ({ user, price, setPrice }) => {
   const { symbol } = useParams();
@@ -11,30 +10,30 @@ const Breakdown = ({ user, price, setPrice }) => {
     quote: {},
   });
   let url = window.location.pathname;
-  
+
   useEffect(() => {
     Promise.all([
       axios.get(`/finn/${symbol}/profile`),
       axios.get(`/finn/${symbol}/financials`),
       axios.get(`/finn/${symbol}/quote`),
     ])
-    .then((all) => {
-      const [symbol, financial, quote] = all;
-      setState((prev) => {
-        return {
-          ...prev,
-          symbol: symbol.data,
-          financial: financial.data,
-          quote: quote.data,
-        };
+      .then((all) => {
+        const [symbol, financial, quote] = all;
+        setState((prev) => {
+          return {
+            ...prev,
+            symbol: symbol.data,
+            financial: financial.data,
+            quote: quote.data,
+          };
+        });
+        setPrice(quote.data.c);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      setPrice(quote.data.c)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
   }, [url]);
-  
+
   useEffect(() => {
     const socket = new WebSocket("ws:localhost:3001/");
 
@@ -51,7 +50,7 @@ const Breakdown = ({ user, price, setPrice }) => {
     };
   }, [url]);
 
-  console.log(state)
+  console.log(state);
   const weekHigh = (h) => {
     if (h >= price) {
       return twoDec(h);
@@ -87,42 +86,55 @@ const Breakdown = ({ user, price, setPrice }) => {
   };
 
   return (
-      <div className="details-breakdown">
-        {state.symbol.logo ? <img src={state.symbol.logo}></img> : null}
-        <h1>{state.symbol.name}</h1>
-        <p className="details-ticker">{state.symbol.ticker}</p>
-        <LineChart />
-        <div>
-          <p>Current Price:</p>
-          <p>${price}</p>
-        </div>
-        <div>
-          <p>Change:</p>
-          <p style={color(showPriceChange()[0])}>
-            {showPriceChange()[0]}({showPriceChange()[1]}%)
-          </p>
-        </div>
-        <div>
-          <p>Market Capitalization:</p>
-          <p>${format(state.symbol.marketCapitalization)}</p>
-        </div>
-        <div>
-          <p>Shares Outstanding:</p>
-          <p>{twoDec(state.symbol.shareOutstanding)}M</p>
-        </div>
-        <div>
-          <p>Average Daily Volume (10 Day):</p>
-          <p>{twoDec(state.financial["10DayAverageTradingVolume"])}M</p>
-        </div>
-        <div>
-          <p>52 Week High:</p>
-          <p>${weekHigh(state.financial["52WeekHigh"])}</p>
-        </div>
-        <div>
-          <p>52 Week Low:</p>
-          <p>${weekLow(state.financial["52WeekLow"])}</p>
-        </div>
-      </div>
+    <div className="details-breakdown">
+      {state.symbol.logo ? <img src={state.symbol.logo}></img> : null}
+      <h1>{state.symbol.name}</h1>
+      <p className="details-ticker">{state.symbol.ticker}</p>
+      <table className="table">
+        <tbody>
+          <tr>
+            <td>Current Price:</td>
+            <td className="breakdown-align">${price}</td>
+          </tr>
+          <tr>
+            <td>Change:</td>
+            <td className="breakdown-align" style={color(showPriceChange()[0])}>
+              {showPriceChange()[0]}({showPriceChange()[1]}%)
+            </td>
+          </tr>
+          <tr>
+            <td>Market Capitalization:</td>
+            <td className="breakdown-align">
+              ${format(state.symbol.marketCapitalization)}
+            </td>
+          </tr>
+          <tr>
+            <td>Shares Outstanding:</td>
+            <td className="breakdown-align">
+              {twoDec(state.symbol.shareOutstanding)}M
+            </td>
+          </tr>
+          <tr>
+            <td>Average Daily Volume (10 Day):</td>
+            <td className="breakdown-align">
+              {twoDec(state.financial["10DayAverageTradingVolume"])}M
+            </td>
+          </tr>
+          <tr>
+            <td>52 Week High:</td>
+            <td className="breakdown-align">
+              ${weekHigh(state.financial["52WeekHigh"])}
+            </td>
+          </tr>
+          <tr>
+            <td>52 Week Low:</td>
+            <td className="breakdown-align">
+              ${weekLow(state.financial["52WeekLow"])}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 };
 

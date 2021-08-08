@@ -14,7 +14,6 @@ import "./AccountInfo.scss";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 650,
     boxShadow: "grey",
     padding: "0 30px",
     backgroundColor: "white",

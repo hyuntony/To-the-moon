@@ -32,7 +32,7 @@ const SearchBar = ({ results, onSearch }) => {
         </div>
       )}
       onChange={(event, value) => handleClick(value.symbol)}
-      style={{ width: 1000, background: "white" }}
+      style={{ background: "white" }}
       onInputChange={(event) => setValue(event.target.value)}
       renderInput={(params) => (
         <TextField {...params} label="Search" variant="outlined" />
