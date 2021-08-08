@@ -6,7 +6,7 @@ html {
     flex-direction: column;
     color: rgb(43, 37, 37);
     background-color: whitesmoke;
-    padding-top: 5em
+    margin-top: 150px;
 }
 .details-breakdown {
     color: black;
@@ -51,9 +51,6 @@ html {
 .login-message{
     display:flex;
     justify-content: center;
-}
-.line-chart {
- padding-top: 1em
 }
 .details-ticker {
     border-bottom: 2px solid black;

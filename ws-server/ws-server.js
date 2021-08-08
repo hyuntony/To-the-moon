@@ -36,9 +36,9 @@ wss.on('connection', function(ws) {
     console.log(`subscribed to: ${symbol}`);
     
     socket.on('message', function(event) {
-      const data = JSON.parse(event)
+      const data = JSON.parse(event);
       if (data.type === 'trade') {
-        const price = data.data[0].p
+        const price = data.data[0].p;
         ws.send(`${price}`);
       }
       console.log('Message from server ', data);

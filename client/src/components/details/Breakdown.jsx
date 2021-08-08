@@ -1,17 +1,17 @@
-// import dotenv from "dotenv";
-import { red } from "@material-ui/core/colors";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import DetailBuySell from "./DetailBuySell";
-const Breakdown = ({ user }) => {
+import LineChart from "./LineChart";
+
+const Breakdown = ({ user, price, setPrice }) => {
   const { symbol } = useParams();
-  const [price, setPrice] = useState(0);
   const [state, setState] = useState({
     symbol: {},
     financial: {},
     quote: {},
   });
+  let url = window.location.pathname;
+  
   useEffect(() => {
     Promise.all([
       axios.get(`/finn/${symbol}/profile`),
@@ -28,13 +28,13 @@ const Breakdown = ({ user }) => {
           quote: quote.data,
         };
       });
+      setPrice(quote.data.c)
     })
     .catch((err) => {
       console.log(err);
     });
-  }, []);
+  }, [url]);
   
-  const currentPrice = state.quote.c;
   useEffect(() => {
     const socket = new WebSocket("ws:localhost:3001/");
 
@@ -47,30 +47,23 @@ const Breakdown = ({ user }) => {
       console.log(event.data);
     };
     return () => {
-      console.log("hello");
       socket.close();
     };
-  }, []);
+  }, [url]);
 
-  const showPrice = () => {
-    if (!price) {
-      return Math.round(currentPrice).toFixed(2);
-    } else {
-      return Math.round(price * 100).toFixed(2) / 100;
-    }
-  };
+  console.log(state)
   const weekHigh = (h) => {
-    if (h > showPrice()) {
+    if (h >= price) {
       return twoDec(h);
     } else {
-      return showPrice();
+      return price;
     }
   };
   const weekLow = (l) => {
-    if (l < showPrice()) {
+    if (l < price) {
       return twoDec(l);
     } else {
-      return showPrice();
+      return price;
     }
   };
   const format = (p) => {
@@ -81,37 +74,40 @@ const Breakdown = ({ user }) => {
   };
 
   const showPriceChange = () => {
-    const priceNow = showPrice();
-    const priceChange = ((priceNow - state.quote.pc) / priceNow) * 100;
-    return priceChange.toFixed(2);
+    const priceChange = ((price - state.quote.pc) / price) * 100;
+    return [(price - state.quote.pc).toFixed(2), priceChange.toFixed(2)];
   };
+
   const color = (p) => {
-    if (p > 0) {
+    if (p >= 0) {
       return { color: "green" };
     } else {
       return { color: "red" };
     }
   };
+
   return (
-    <>
       <div className="details-breakdown">
         {state.symbol.logo ? <img src={state.symbol.logo}></img> : null}
         <h1>{state.symbol.name}</h1>
         <p className="details-ticker">{state.symbol.ticker}</p>
+        <LineChart />
         <div>
           <p>Current Price:</p>
-          <p>${showPrice()}</p>
+          <p>${price}</p>
         </div>
         <div>
-          <p>Percentage Price Change:</p>
-          <p style={color(showPriceChange())}>{showPriceChange()}%</p>
+          <p>Change:</p>
+          <p style={color(showPriceChange()[0])}>
+            {showPriceChange()[0]}({showPriceChange()[1]}%)
+          </p>
         </div>
         <div>
           <p>Market Capitalization:</p>
           <p>${format(state.symbol.marketCapitalization)}</p>
         </div>
         <div>
-          <p>Share Outstanding:</p>
+          <p>Shares Outstanding:</p>
           <p>{twoDec(state.symbol.shareOutstanding)}M</p>
         </div>
         <div>
@@ -127,8 +123,6 @@ const Breakdown = ({ user }) => {
           <p>${weekLow(state.financial["52WeekLow"])}</p>
         </div>
       </div>
-      <DetailBuySell user={user} price={showPrice()} />
-    </>
   );
 };
 

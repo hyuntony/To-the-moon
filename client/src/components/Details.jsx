@@ -1,14 +1,19 @@
+import { useState } from "react";
 import Breakdown from "./details/Breakdown";
 import DetailBuySell from "./details/DetailBuySell";
-import LineChart from "./details/LineChart";
 import Personal from "./details/Personal";
+import Search from "./search/Search";
 import "./Details.scss";
+
 const Details = ({ user }) => {
+  const [price, setPrice] = useState(0);
+
   return (
     <div className="details">
-      <LineChart />
+      <Search />
+      <Breakdown user={user} price={price} setPrice={setPrice} />
       <Personal user={user}/>
-      <Breakdown user={user} />
+      <DetailBuySell user={user} price={price} />
     </div>
   );
 };

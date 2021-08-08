@@ -22,9 +22,7 @@ const Search = () => {
 
   return (
     <div className="search">
-      <div className="fa fa-search"></div>
       <SearchBar onSearch={(term) => setTerm(term)} results={results} />
-      <div className="fa fa-times"></div>
     </div>
   );
 };

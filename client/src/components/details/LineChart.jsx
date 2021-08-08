@@ -4,20 +4,7 @@ import { Line } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
 
 const data = {
-  labels: [
-    "Septehmber",
-    "October",
-    "November",
-    "December",
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-  ],
+  labels: [],
   datasets: [
     {
       label: "# of Votes",
@@ -78,7 +65,6 @@ const LineChart = () => {
   }, []);
   return (
     <div className='line-chart'>
-      <h1>Stock Detail</h1>
       <Line data={data} options={options} width={1000} height={500} />
     </div>
   );

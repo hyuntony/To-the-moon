@@ -35,7 +35,7 @@ const App = () => {
           {/* <Nav loggedIn={user} /> */}
           <Logout user={user} login={login} logout={logout} />
         </header>
-        <main>
+        <main className="main">
           <Switch>
             <Route path="/" exact>
               {!user && <Intro />}
