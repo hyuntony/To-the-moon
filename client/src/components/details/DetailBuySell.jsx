@@ -68,9 +68,9 @@ const DetailBuySell = ({ user, price }) => {
           togglePopup();
         })
         .catch((err) => {
-            setIsOpen(!isOpen)
-            console.log(err.response.data);
-        })
+          setIsOpen(!isOpen);
+          console.log(err.response.data);
+        });
       // .then(() => console.log(`Buy: ${value} ${symbol} Stock!`))
     }
   };
@@ -99,9 +99,9 @@ const DetailBuySell = ({ user, price }) => {
           togglePopup();
         })
         .catch((err) => {
-            setIsOpen(!isOpen)
-            console.log(err.response.data);
-        })
+          setIsOpen(!isOpen);
+          console.log(err.response.data);
+        });
       // .then(() => console.log(`Sell: ${value} ${symbol} Stock!`))
     }
   };
@@ -164,7 +164,6 @@ const DetailBuySell = ({ user, price }) => {
             />
           )}
         </div>
-        {whichButton()}
         <Button
           variant="outlined"
           color="primary"
@@ -176,6 +175,7 @@ const DetailBuySell = ({ user, price }) => {
         <Button variant="outlined" color="primary" onClick={sellOnClick}>
           Sell
         </Button>
+        {whichButton()}
       </div>
     </div>
   );

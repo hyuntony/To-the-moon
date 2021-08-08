@@ -1,96 +1,145 @@
-html {
-    background-color: black;
-}
+// html {
+//   background-color: black;
+// }
 .details {
-    display: flex;
-    flex-direction: column;
-    color: rgb(43, 37, 37);
-    background-color: whitesmoke;
-    margin-top: 150px;
+  display: flex;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
 }
 .details-breakdown {
-    color: black;
-    font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 10px;
+  // width: 100%;
+  // background-color: whitesmoke;
+  // padding: 1em 5em 0em 5em;
+}
+
+@media only screen and (max-width: 960px) {
+  .details {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
-    background-color: whitesmoke;
-    padding: 1em 5em 0em 5em;
+  }
 }
+
+.details-personal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  // width: 50%;
+  // background-color: whitesmoke;
+  // padding: 1em 5em 0em 5em;
+}
+.details-personal div {
+  display: flex;
+  // justify-content: space-between;
+}
+
+.personal-title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 15px;
+  color: grey;
+}
+
+.breakdown-align {
+  text-align: right;
+}
+
+.personal-text {
+  margin-left: 20px;
+}
+
 .details-breakdown div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  // flex-direction: row;
+  justify-content: space-between;
 }
+
 .details-breakdown img {
-    height: 100px;
-    width: 100px;
+  height: 50px;
+  width: 50px;
+}
+
+.table {
+  border: 1px solid black;
+  background-color: whitesmoke;
 }
 
 .line-graph {
-    height: 100%;
+  height: 50%;
 }
 
 .buy-sell-func {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: whitesmoke;
-    justify-content: flex-end;
-    padding: 0em 1em 0em 0em;
+  display: flex;
+  // flex-direction: column;
+  width: 100%;
+  // background-color: whitesmoke;
+  justify-content: center;
+  // padding: 0em 1em 0em 0em;
+  padding-bottom: 20px;
 }
-.details-buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding: 5px;
+.details-buttons {
+  display: flex;
+  // flex-direction: row;
+  // justify-content: flex-end;
+  // padding: 5px;
 }
 .details-buttons button {
-   margin: 0px 0px 0px 5px
+  margin: 0px 0px 0px 5px;
 }
-.login-message{
-    display:flex;
-    justify-content: center;
+.login-message {
+  display: flex;
+  justify-content: center;
 }
 .details-ticker {
-    border-bottom: 2px solid black;
+  border-bottom: 2px solid black;
 }
 .popup-box {
-    position: fixed;
-    background: #00000050;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    font-size:15px;
-  }
-   
-  .box {
-    position: relative;
-    width: 20%;
-    margin: 0 auto;
-    height: auto;
-    max-height: 70vh;
-    margin-top: calc(100vh - 85vh - 20px);
-    background: #fff;
-    border-radius: 4px;
-    padding: 20px;
-    border: 1px solid #999;
-    overflow: auto;
-  }
-   
-  .close-icon {
-    content: 'x';
-    cursor: pointer;
-    position: fixed;
-    right: calc(15% - 30px);
-    top: calc(100vh - 85vh - 33px);
-    background: #ededed;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    line-height: 20px;
-    text-align: center;
-    border: 1px solid #999;
-    font-size: 2px;
-  }
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  font-size: 15px;
+}
+
+.box {
+  position: relative;
+  width: 20%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh + 50px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.close-icon {
+  content: "x";
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 2px;
+}
