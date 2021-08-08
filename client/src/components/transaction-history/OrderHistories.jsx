@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './OrderHistories.scss'
 const OrderHistories = ({user}) => {
@@ -9,10 +10,11 @@ useEffect(()=>{
     .catch((err)=> {console.log(err)})
 },[])
 const array = data.map(each => {
-    let newDate = new Date(each.createdAt)
+    let newDate = new Date(each.createdAt);
+    let url = `/details/${each.symbol}`;
         return (<tr className='each-order'>
         <td className='each-detail'>{newDate.toLocaleDateString()}</td>
-        <td className='each-detail'>{each.symbol}</td>
+        <td className='each-detail'><Link className='link-details' to={url}>{each.symbol}</Link></td>
         <td className='each-detail'>{each.action}</td>
         <td className='each-detail'>{each.shares}</td>
         <td className='each-detail'>${each.price}</td>

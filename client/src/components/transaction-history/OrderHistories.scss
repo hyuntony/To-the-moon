@@ -17,10 +17,24 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 20px;
 }
 .each-detail{
     display:flex;
     flex-direction: row;
     justify-content: space-around;
    width:100%;
+}
+.holdings-title {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin: 0px;
+    padding-top: 1em;
+}
+
+.link-details {
+    text-decoration: none;
+    color: black;
 }
