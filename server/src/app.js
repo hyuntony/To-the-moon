@@ -32,7 +32,7 @@ app.use('/user', userRouter);
 app.use('/finn', finnRouter);
 app.use('/api', api_reqRouter);
  
-const eraseDatabaseOnSync = false;
+const eraseDatabaseOnSync = true;
 
 connectDb().then(async () => {
   if (eraseDatabaseOnSync) {
