@@ -25,7 +25,8 @@ const columns = [
     field: "avgCost",
     headerName: "Avg Cost",
     type: "number",
-    width: 160,
+    sortable: false,
+    width: 120,
     valueFormatter: ({ value }) => `$${value}`,
   },
   {

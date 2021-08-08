@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -31,14 +31,15 @@ const TableHeader = withStyles({
   },
 })(TableCell);
 
-const createData = function (balance, investments, cash, change, date) {
-  return { balance, investments, cash, change, date };
+const createData = function (balance, investments, cash, date) {
+  return { balance, investments, cash, date };
 };
 
-const rows = [createData(100000, 95000, 5000, 8700, "January 1st, 2021")];
-
-export default function DenseTable() {
+export default function AccountInfo({ user }) {
   const classes = useStyles();
+  const cashBalance = user.balance
+  const today = new Date().toISOString().split('T')[0]
+  const rows = [createData(100000, 95000, cashBalance, today)];
 
   return (
     <div>
@@ -54,7 +55,6 @@ export default function DenseTable() {
               <TableHeader align="center">Total Balance&nbsp;($)</TableHeader>
               <TableHeader align="center">Investments&nbsp;($)</TableHeader>
               <TableHeader align="center">Cash&nbsp;($)</TableHeader>
-              <TableHeader align="center">Change&nbsp;($)</TableHeader>
               <TableHeader align="center">As of</TableHeader>
             </TableRow>
           </TableHead>
@@ -66,7 +66,6 @@ export default function DenseTable() {
                 </TableCell>
                 <TableCell align="center">{row.investments}</TableCell>
                 <TableCell align="center">{row.cash}</TableCell>
-                <TableCell align="center">{row.change}</TableCell>
                 <TableCell align="center">{row.date}</TableCell>
               </TableRow>
             ))}

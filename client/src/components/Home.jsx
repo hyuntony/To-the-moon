@@ -30,7 +30,7 @@ const Home = ({user}) => {
       <Search />
       <Grid container spacing={3}>
         <Grid item xs={10}>
-          <AccountInfo />
+          <AccountInfo user={user} />
           <Holdings />
         </Grid>
         <Grid item xs={2}>
