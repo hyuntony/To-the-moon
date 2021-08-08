@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Nav from "./Nav";
@@ -43,7 +43,7 @@ const App = () => {
             </Route>
             <Route path="/details/:symbol">
               {user && <Details user={user} />}
-              {!user && <h1 className='login-message'>Please Login!</h1>}
+              {!user &&  <Redirect to="/" />}
             </Route>
             <Route path="/history">
               <History user={user}/>
