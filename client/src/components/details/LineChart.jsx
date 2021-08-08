@@ -64,8 +64,8 @@ const LineChart = () => {
     });
   }, []);
   return (
-    <div className='line-chart'>
-      <Line data={data} options={options} width={1000} height={500} />
+    <div>
+      <Line data={data} options={options} />
     </div>
   );
 };
