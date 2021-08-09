@@ -1,12 +1,11 @@
 import React from "react";
 import HistoryGrid from "./transaction-history/HistoryGrid";
-import HistoryComp from "./transaction-history/HistoryComp";
-import OrderHistories from "./transaction-history/OrderHistories";
+import './History.scss'
 const History = ({user}) => {
   return (
     <>
-    <h3 className="holdings-title">Holdings</h3>
-    <OrderHistories user={user}/>
+    <h3 className="history-title">Holdings</h3>
+    <HistoryGrid user={user}/>
     </>
     )
    

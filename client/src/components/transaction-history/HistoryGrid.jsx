@@ -1,68 +1,73 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import "./HistoryGrid.scss";
 
 
 export default function DataGridDemo({user}) {
   const columns = [
-    { field: '_id', headerName: 'ID', width: 90 },
     {
-      field: 'symbol',
+      field: 'Date',
+      headerName: 'Date',
+      width: 250
+    },
+    {
+      field: 'Symbol',
       headerName: 'Symbol',
       width: 150,
     },
     {
-      field: 'action',
+      field: 'Action',
       headerName: 'Action',
       width: 150,
     },
     {
-      field: 'price',
+      field: 'Price',
       headerName: 'Price',
       type: 'number',
-      width: 110,
+      width: 150,
+      valueFormatter: ({value}) => `$${value.toFixed(2)}`
     }, 
     {
-      field: 'shares',
+      field: 'Shares',
       headerName: 'Shares',
       type: 'number',
-      width: 130,
+      width: 150,
     },
-    {
-      field: 'createdAt',
-      headerName: 'Date',
-      width: 150
-    },
+    { field: 'id', headerName: 'ID', width: 350 },
+    
   ];
   
-  // const rows = [
-  //   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  // ];
-
-
   const [rows, setRows] = useState([])
-  // const columns = []
   useEffect(()=>{
-
     axios.get(`/user/history/${user._id}`)
     .then((res)=>{
-      console.log(res.data);
-      setRows(res.data)
+      for (const each of res.data) {
+        console.log(each._id)
+        let newDate = new Date(each.createdAt)
+        const row = {
+          id: each._id,
+        Date: newDate.toLocaleString(),
+        Symbol: each.symbol,
+        Price: each.price,
+        Shares: each.shares,
+        Action: each.action,
+      }
+      setRows(prev => [...prev, row])
+      }
     })
     .catch((err)=> {console.log(err)})
-    
-  })
-  console.log(rows)
+    return () => {
+      setRows([])
+    }
+  }, [])
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div className='holdings-grid' style={{ height: 800, width: '100%'}}>
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
+        pageSize={13}
       />
     </div>
   );
