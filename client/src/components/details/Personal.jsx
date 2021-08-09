@@ -27,7 +27,7 @@ const Personal = ({ user, count, setCount }) => {
         </div>
         <div>
           <p>Current Balance: </p>
-          <p className="personal-text">${personal.balance}</p>
+          <p className="personal-text">${personal.balance.toFixed(2)}</p>
         </div>
       </div>
     </div>
