@@ -108,27 +108,3 @@ const Logout = ({ user, login, logout }) => {
 };
 
 export default Logout;
-// {!user && <li className="logout-item">
-//               <button
-//                 className="logout-links"
-//                 onClick={() => login('1@email.com')}
-//               >
-//                 Login 1
-//               </button>
-//             </li> }
-//             {!user && <li className="logout-item">
-//               <button
-//                 className="logout-links"
-//                 onClick={() => login('2@email.com')}
-//               >
-//                 Login 2
-//               </button>
-//             </li> }
-//             <li className="logout-item">
-//               <button
-//                 className="logout-links-mobile"
-//                 onClick={logout}
-//               >
-//                 Logout
-//               </button>
-//             </li>

@@ -13,11 +13,12 @@ const array = data.map(each => {
     let newDate = new Date(each.createdAt);
     let url = `/details/${each.symbol}`;
         return (<tr className='each-order'>
-        <td className='each-detail'>{newDate.toLocaleDateString()}</td>
+        <td className='each-detail'>{newDate.toLocaleString()}</td>
         <td className='each-detail'><Link className='link-details' to={url}>{each.symbol}</Link></td>
         <td className='each-detail'>{each.action}</td>
+        <td className='each-detail'>${each.price.toFixed(2)}</td>
         <td className='each-detail'>{each.shares}</td>
-        <td className='each-detail'>${each.price}</td>
+        <td className='each-detail'>${(each.price * each.shares).toFixed(2)}</td>
         </tr>
         )
     })
@@ -28,8 +29,9 @@ const array = data.map(each => {
                 <th className='each-detail'>Date</th>
                 <th className='each-detail'>Symbol</th>
                 <th className='each-detail'>Action</th>
-                <th className='each-detail'>Shares</th>
                 <th className='each-detail'>Price</th>
+                <th className='each-detail'>Amount(shares)</th>
+                <th className='each-detail'>Value</th>
                 </tr>
             <>{array}</>
         </table>

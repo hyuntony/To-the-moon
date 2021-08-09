@@ -50,7 +50,6 @@ const Breakdown = ({ user, price, setPrice }) => {
     };
   }, [url]);
 
-  console.log(state);
   const weekHigh = (h) => {
     if (h >= price) {
       return twoDec(h);

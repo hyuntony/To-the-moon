@@ -46,7 +46,8 @@ const App = () => {
               {!user &&  <Redirect to="/" />}
             </Route>
             <Route path="/history">
-              <History user={user}/>
+              {user && <History user={user} />}
+              {!user &&  <Redirect to="/" />}
             </Route>
             <Route path="/about">
               <About />
