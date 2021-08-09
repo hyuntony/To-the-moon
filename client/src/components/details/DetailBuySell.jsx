@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import Popup from "./Popup";
 
-const DetailBuySell = ({ user, price }) => {
+const DetailBuySell = ({ user, price, count, setCount }) => {
   const userId = user._id;
   const [value, setValue] = useState(0);
   const { symbol } = useParams();
@@ -29,7 +29,7 @@ const DetailBuySell = ({ user, price }) => {
   const addWatchlist = () => {
     axios
       .post(`/api/watchlist`, { symbol, user })
-      // .then((res) => {console.log(res.data)})
+     
       .then(() => {
         setAdded(1);
       });
@@ -37,9 +37,6 @@ const DetailBuySell = ({ user, price }) => {
   const removeWatchlist = () => {
     axios
       .post(`/api/watchlist/delete`, { symbol, user })
-      .then((res) => {
-        console.log(res.data);
-      })
       .then(() => {
         setAdded(0);
       });
@@ -61,9 +58,8 @@ const DetailBuySell = ({ user, price }) => {
           user,
           price: price,
         })
-        // .then(()=> {togglePopup(`Purchased ${value} Stocks`)})
         .then((res) => {
-          console.log(res.data);
+          setCount(count + 1)
         })
         .then((res) => {
           togglePopup();
@@ -72,7 +68,7 @@ const DetailBuySell = ({ user, price }) => {
           setIsOpen(!isOpen);
           console.log(err.response.data);
         });
-      // .then(() => console.log(`Buy: ${value} ${symbol} Stock!`))
+
     }
   };
   const sellOnClick = () => {
@@ -92,9 +88,8 @@ const DetailBuySell = ({ user, price }) => {
           user,
           price: price,
         })
-        // .then(()=> {togglePopup(`Sold ${value} Stocks`)})
         .then((res) => {
-          console.log(res.data);
+          setCount(count + 1)
         })
         .then(() => {
           togglePopup();
@@ -103,7 +98,6 @@ const DetailBuySell = ({ user, price }) => {
           setIsOpen(!isOpen);
           console.log(err.response.data);
         });
-      // .then(() => console.log(`Sell: ${value} ${symbol} Stock!`))
     }
   };
 

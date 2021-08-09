@@ -49,7 +49,6 @@ export default function DataGridDemo({user}) {
     axios.get(`/user/history/${user._id}`)
     .then((res)=>{
       for (const each of res.data) {
-        console.log(each._id)
         let newDate = new Date(each.createdAt)
         const row = {
           id: each._id,

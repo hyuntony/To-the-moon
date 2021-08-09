@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-const Personal = ({ user }) => {
+const Personal = ({ user, count, setCount }) => {
   const { symbol } = useParams();
   const [personal, setPersonal] = useState({
     holding: 0,
     balance: 0,
   });
-  // const [balance, setBalance]=useState(0)
   const email = user.email;
   useEffect(() => {
     axios.get("/user/user", { email }).then((res) => {
@@ -16,7 +15,8 @@ const Personal = ({ user }) => {
         balance: res.data.balance,
       });
     });
-  }, [res.data]);
+  }, [count]);
+ 
   return (
     <div>
       <h4 className="personal-title">My Portfolio</h4>

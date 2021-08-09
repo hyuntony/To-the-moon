@@ -9,7 +9,7 @@ import LineChart from "./details/LineChart";
 
 const Details = ({ user }) => {
   const [price, setPrice] = useState(0);
-
+  const [count, setCount] = useState(0);
   return (
     <div>
       <Search />
@@ -21,8 +21,8 @@ const Details = ({ user }) => {
           <Breakdown user={user} price={price} setPrice={setPrice} />
         </Grid>
       </Grid>
-      <Personal user={user} />
-      <DetailBuySell user={user} price={price} />
+      <Personal user={user} count={count} setCount={setCount} />
+      <DetailBuySell user={user} price={price} count={count} setCount={setCount} />
     </div>
   );
 };
