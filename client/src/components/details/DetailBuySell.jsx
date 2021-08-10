@@ -66,6 +66,7 @@ const DetailBuySell = ({ user, price, setUser }) => {
         })
         .then((res) => {
             setUser(res.data);
+            setValue("");
         })
         .then((res) => {
             togglePopup();
@@ -97,6 +98,7 @@ const DetailBuySell = ({ user, price, setUser }) => {
         })
         .then((res) => {
           setUser(res.data);
+          setValue("");
         })
         .then(() => {
           togglePopup();

@@ -27,8 +27,8 @@ const SearchBar = ({ results, onSearch }) => {
       getOptionLabel={(result) => `${result.symbol}`}
       renderOption={(option) => (
         <div className="search-result">
-          <div>{option.symbol}</div>
-          <div>({option.description})</div>
+          <div>{option === null ? "" : option.symbol}</div>
+          <div>({option === null ? "" : option.description})</div>
         </div>
       )}
       onChange={(event, value) => handleClick(value.symbol)}

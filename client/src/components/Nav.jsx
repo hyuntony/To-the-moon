@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "./Button";
 import { Link } from "react-router-dom";
 import "./Nav.scss";
 
-const Nav = () => {
+const Nav = ({ user, login, logout }) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -26,32 +25,84 @@ const Nav = () => {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+      <nav className="logout">
+        <div className="logout-container">
+          <Link to="/" className="logout-logo" onClick={closeMobileMenu}>
             TTM
             <i className="fas fa-coins"></i>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/about" className="nav-links" onClick={closeMobileMenu}>
+          <ul className={click ? "logout-menu active" : "logout-menu"}>
+            {user && (
+              <li className="logout-item">
+                <Link to="/" className="logout-links" onClick={closeMobileMenu}>
+                  Portfolio
+                </Link>
+              </li>
+            )}
+            <li className="logout-item">
+              <Link
+                to="/about"
+                className="logout-links"
+                onClick={closeMobileMenu}
+              >
                 About Us
               </Link>
             </li>
-            <li>
-              <Link
-                to="/register"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                GET STARTED
-              </Link>
-            </li>
+            {user && (
+              <li className="logout-item">
+                <Link
+                  to="/history"
+                  className="logout-links"
+                  onClick={closeMobileMenu}
+                >
+                  Order History
+                </Link>
+              </li>
+            )}
+            {!user && (
+              <li className="logout-item">
+                <Link
+                  to='/'
+                  className="logout-links"
+                  onClick={() => login("1@email.com")}
+                >
+                  Login 1
+                </Link>
+              </li>
+            )}
+            {!user && (
+              <li className="logout-item">
+                <Link
+                  to='/'
+                  className="logout-links"
+                  onClick={() => login("2@email.com")}
+                >
+                  Login 2
+                </Link>
+              </li>
+            )}
+            {!user && (
+              <li className="logout-item">
+                <Link
+                  to='/'
+                  className="logout-links"
+                  onClick={() => login("3@email.com")}
+                >
+                  Login 3
+                </Link>
+              </li>
+            )}
+            {user && (
+              <li className="logout-item">
+                <Link to="/" className="logout-links" onClick={() => logout()}>
+                  Logout
+                </Link>
+              </li>
+            )}
           </ul>
-          {button && <Button buttonStyle="btn--outline">GET STARTED</Button>}
         </div>
       </nav>
     </>

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import axios from "axios";
 
 import Nav from "./Nav";
-import Logout from "./Logout";
 import Home from "./Home";
 import Intro from "./Intro";
 import Details from "./Details";
@@ -27,8 +26,7 @@ const App = () => {
     <Router>
       <div className="App">
         <header>
-          {/* <Nav loggedIn={user} /> */}
-          <Logout user={user} login={login} logout={logout} />
+          <Nav user={user} login={login} logout={logout} />
         </header>
         <main className="main">
           <Switch>

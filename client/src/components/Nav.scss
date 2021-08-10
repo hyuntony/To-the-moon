@@ -1,4 +1,4 @@
-.navbar-container {
+.logout-container {
   background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   height: 80px;
   display: flex;
@@ -10,7 +10,7 @@
   z-index: 999;
 }
 
-.navbar-logo {
+.logout-logo {
   color: #fff;
   justify-self: start;
   cursor: pointer;
@@ -25,9 +25,9 @@
   font-size: 1.8rem;
 }
 
-.nav-menu {
+.logout-menu {
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(6, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
@@ -36,20 +36,20 @@
   margin-right: 2rem;
 }
 
-.nav-item {
+.logout-item {
   height: 80px;
 }
 
-.nav-links {
+.logout-links {
   color: #fff;
   display: flex;
   align-items: center;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  height: 100%;
+  height: 120%;
 }
 
-.nav-links:hover {
+.logout-links:hover {
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
 }
@@ -58,7 +58,7 @@
   color: #fff;
 }
 
-.nav-links-mobile {
+.logout-links-mobile {
   display: none;
 }
 
@@ -67,11 +67,11 @@
 }
 
 @media screen and (max-width: 960px) {
-  .NavbarItems {
+  .logoutItems {
     position: relative;
   }
 
-  .nav-menu {
+  .logout-menu {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -83,7 +83,7 @@
     transition: all 0.5s ease;
   }
 
-  .nav-menu.active {
+  .logout-menu.active {
     background: #242222;
     left: 0;
     opacity: 1;
@@ -91,20 +91,20 @@
     z-index: 1;
   }
 
-  .nav-links {
+  .logout-links {
     text-align: center;
     padding: 2rem;
     width: 100%;
     display: table;
   }
 
-  .nav-links:hover {
+  .logout-links:hover {
     background-color: #fff;
     color: #242424;
     border-radius: 0;
   }
 
-  .navbar-logo {
+  .logout-logo {
     position: absolute;
     top: 0;
     left: 0;
@@ -126,7 +126,7 @@
     font-size: 2rem;
   }
 
-  .nav-links-mobile {
+  .logout-links-mobile {
     display: block;
     text-align: center;
     margin: 2rem auto;
@@ -141,7 +141,7 @@
     transition: all 0.3s ease-out;
   }
 
-  .nav-links-mobile:hover {
+  .logout-links-mobile:hover {
     background: #fff;
     color: #242424;
     transition: 250ms;
