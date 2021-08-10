@@ -34,8 +34,14 @@ export default function DataGridDemo({user}) {
       type: 'number',
       width: 150,
     },
+    {
+      field: 'Total',
+      headerName: 'Total Cost',
+      type: 'number',
+      width: 150,
+      valueFormatter: ({value}) => `$${value.toFixed(2)}`
+    },
     { field: 'id', headerName: 'ID', width: 350 },
-    
   ];
   
   const [rows, setRows] = useState([])
@@ -52,6 +58,7 @@ export default function DataGridDemo({user}) {
         Price: each.price,
         Shares: each.shares,
         Action: each.action,
+        Total: each.price * each.shares
       }
       setRows(prev => [...prev, row])
       }

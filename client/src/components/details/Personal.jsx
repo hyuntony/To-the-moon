@@ -16,7 +16,7 @@ const Personal = ({ user }) => {
         balance: res.data.balance,
       });
     });
-  }, []);
+  }, [res.data]);
   return (
     <div>
       <h4 className="personal-title">My Portfolio</h4>
