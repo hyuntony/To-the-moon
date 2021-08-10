@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import "./Holdings.scss";
 import axios from "axios";
 
@@ -23,7 +24,11 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
   const totPort = totalPort
 
   const columns = [
-    { field: "name", headerName: "Name", width: 120 },
+    { field: "name", headerName: "Name", width: 120,
+    renderCell: (params) => (
+      <Link className='symbol-link' to={`/details/${params.value}`}>{params.value}</Link>
+    )
+  },
     {
       field: "quantity",
       headerName: "Quantity",

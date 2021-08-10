@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom"
 import Table from "@material-ui/core/Table/Table";
 import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableRow from "@material-ui/core/TableRow/TableRow";
@@ -51,7 +52,7 @@ const Watchlist = ({ user, update }) => {
     
     return (
       <TableRow key={each.config.url}>
-        <TableCell>{clean(each.config.url)}</TableCell>
+        <TableCell><Link className='symbol-link' to={`/details/${clean(each.config.url)}`}>{clean(each.config.url)}</Link></TableCell>
         <TableCell>${each.data === null ? 0 : each.data.c}</TableCell>
         <TableCell>${each.data === null ? 0 : each.data.d}({each.data === null ? 0 : each.data.dp}%)</TableCell>
       </TableRow>

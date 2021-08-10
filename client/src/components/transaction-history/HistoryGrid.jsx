@@ -1,10 +1,12 @@
 import * as React from "react";
+import {Link} from 'react-router-dom'
 import { useState, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import axios from "axios";
 
 
 export default function DataGridDemo({user}) {
+  
   const columns = [
     {
       field: 'Date',
@@ -15,6 +17,9 @@ export default function DataGridDemo({user}) {
       field: 'Symbol',
       headerName: 'Symbol',
       width: 150,
+      renderCell: (params) => (
+        <Link className='symbol-link' to={`/details/${params.value}`}>{params.value}</Link>
+      )
     },
     {
       field: 'Action',
