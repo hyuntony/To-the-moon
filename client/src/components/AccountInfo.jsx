@@ -36,10 +36,10 @@ const createData = function (balance, investments, cash, date) {
 
 export default function AccountInfo({ user, totalPort }) {
   const classes = useStyles();
-  const cashBalance = user.balance
-  const today = new Date().toISOString().split('T')[0]
-  const totPort = totalPort
-  const totBal = totPort + cashBalance
+  const cashBalance = user.balance;
+  const today = new Date().toISOString().split('T')[0];
+  const totPort = totalPort;
+  const totBal = totPort + cashBalance;
 
   const rows = [createData(totBal, totPort, cashBalance, today)];
 
@@ -54,9 +54,9 @@ export default function AccountInfo({ user, totalPort }) {
         >
           <TableHead>
             <TableRow>
-              <TableHeader align="center">Total Balance&nbsp;($)</TableHeader>
-              <TableHeader align="center">Investments&nbsp;($)</TableHeader>
-              <TableHeader align="center">Cash&nbsp;($)</TableHeader>
+              <TableHeader align="center">Total Balance</TableHeader>
+              <TableHeader align="center">Investments</TableHeader>
+              <TableHeader align="center">Cash</TableHeader>
               <TableHeader align="center">As of</TableHeader>
             </TableRow>
           </TableHead>
@@ -64,11 +64,11 @@ export default function AccountInfo({ user, totalPort }) {
             {rows.map((row) => (
               <TableRow key={row.balance}>
                 <TableCell align="center" component="th" scope="row">
-                  {row.balance}
+                  ${row.balance.toLocaleString()}
                 </TableCell>
-                <TableCell align="center">{row.investments}</TableCell>
-                <TableCell align="center">{row.cash}</TableCell>
-                <TableCell align="center">{row.date}</TableCell>
+                <TableCell align="center">${row.investments.toLocaleString()}</TableCell>
+                <TableCell align="center">${row.cash.toLocaleString()}</TableCell>
+                <TableCell align="center">${row.date}</TableCell>
               </TableRow>
             ))}
           </TableBody>

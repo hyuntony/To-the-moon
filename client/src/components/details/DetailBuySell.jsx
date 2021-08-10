@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import Popup from "./Popup";
 
-const DetailBuySell = ({ user, price }) => {
+const DetailBuySell = ({ user, price, setUser }) => {
   const userId = user._id;
   const [value, setValue] = useState(0);
   const { symbol } = useParams();
@@ -62,7 +62,9 @@ const DetailBuySell = ({ user, price }) => {
         })
         // .then(()=> {togglePopup(`Purchased ${value} Stocks`)})
         .then((res) => {
-          console.log(res.data);
+            console.log('userData:', res.data)
+            console.log('setUser', setUser)
+            setUser(res.data);
         })
         .then((res) => {
           togglePopup();
@@ -93,7 +95,7 @@ const DetailBuySell = ({ user, price }) => {
         })
         // .then(()=> {togglePopup(`Sold ${value} Stocks`)})
         .then((res) => {
-          console.log(res.data);
+          setUser(res.data);
         })
         .then(() => {
           togglePopup();

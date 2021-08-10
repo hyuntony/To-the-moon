@@ -25,18 +25,26 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = ({user}) => {
   const [totalPort, setTotalPort] = useState(0);
+  const [update, setUpdate] = useState(0);
   const classes = useStyles();
+
+  const onClick = () => {
+    setUpdate((prev) => prev + 1);
+  };
 
   return (
     <div className={classes.root}>
       <Search />
       <Grid container spacing={3}>
-        <Grid item xs={10}>
+        <Grid item xs={8}>
+          <button onClick={onClick}>
+            <i class="fas fa-sync-alt"></i>
+          </button>
           <AccountInfo user={user} totalPort={totalPort} />
-          <Holdings user={user} totalPort={totalPort} setTotalPort={setTotalPort} />
+          <Holdings user={user} totalPort={totalPort} setTotalPort={setTotalPort} update={update} />
         </Grid>
-        <Grid item xs={2}>
-          <Watchlist user={user}/>
+        <Grid item xs={4}>
+          <Watchlist user={user} update={update} />
         </Grid>
       </Grid>
     </div>

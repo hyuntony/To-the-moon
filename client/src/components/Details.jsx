@@ -7,7 +7,7 @@ import "./Details.scss";
 import Grid from "@material-ui/core/Grid";
 import LineChart from "./details/LineChart";
 
-const Details = ({ user }) => {
+const Details = ({ user, setUser }) => {
   const [price, setPrice] = useState(0);
 
   return (
@@ -22,7 +22,7 @@ const Details = ({ user }) => {
         </Grid>
       </Grid>
       <Personal user={user} />
-      <DetailBuySell user={user} price={price} />
+      <DetailBuySell user={user} price={price} setUser={setUser} />
     </div>
   );
 };

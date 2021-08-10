@@ -42,6 +42,9 @@ const options = {
 const LineChart = () => {
   const { symbol } = useParams();
   const [data, setData] = useState({});
+
+  let url = window.location.pathname;
+
   useEffect(() => {
     axios.get(`/finn/${symbol}/candles`).then((res) => {
       const dateArray = res.data.t.map((number) => {
@@ -62,7 +65,8 @@ const LineChart = () => {
         ],
       });
     });
-  }, []);
+  }, [url]);
+
   return (
     <div>
       <Line data={data} options={options} />
@@ -70,4 +74,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default React.memo(LineChart);

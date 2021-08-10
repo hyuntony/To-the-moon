@@ -11,45 +11,56 @@ import { withStyles } from "@material-ui/styles";
 import axios from "axios";
 import "./Watchlist.scss";
 
+const Watchlist = ({ user, update }) => {
+  const TableHeader = withStyles({
+    root: {
+      color: "black",
+      fontSize: 20,
+    },
+  })(TableCell);
 
-
-const TableHeader = withStyles({
-  root: {
-    color: "black",
-    fontSize: 20,
-  },
-})(TableCell);
-
-const Watchlist = ({user}) => {
   const id = user._id
-  const [array, setArray]=useState([])
+  const [array, setArray] = useState([])
 
   useEffect(()=>{
+    let mounted = true;
+    console.log('running')
     axios.get(`/api/watchlist/${id}`)
-    .then((res)=>{setArray(res.data)})
-  },[])
+      .then((res) => {
+        const promiseArray = res.data.map((each) => {
+          return axios.get(`/finn/${each.symbol}/quote`)
+        })
+        return Promise.all(promiseArray)
+      })
+      .then((array) => {
+        if (mounted) {
+          setArray(array);
+        }
+      })
+      .catch(err => console.log("error:", err))
 
-const list = array.map(each => {
-  return (
-    <TableRow>
-      <TableCell>{each.symbol}</TableCell>
-      <TableCell>{each.symbol}</TableCell>
-    </TableRow>
-  )
-})
-//   const list = async () => {watchlistArray.map((each)=>{
-//     return (<TableRow>
-//       <TableCell>{each}</TableCell>
-//     </TableRow>)
-//   })
-// }
-  // console.log(list)
+    return () => mounted = false;
+  }, [update])
+
+  const list = array.map(each => {
+    const clean = (url) => {
+      let cleanedUrl = url.replace("/finn/", "")
+      cleanedUrl = cleanedUrl.replace("/quote", "")
+      return cleanedUrl
+    };
+    
+    return (
+      <TableRow key={each.config.url}>
+        <TableCell>{clean(each.config.url)}</TableCell>
+        <TableCell>${each.data === null ? 0 : each.data.c}</TableCell>
+        <TableCell>${each.data === null ? 0 : each.data.d}({each.data === null ? 0 : each.data.dp}%)</TableCell>
+      </TableRow>
+    )
+  })
+
   return (
     <div>
       <h4 className="watchlist-title">Watchlist</h4>
-      <button onclick={() => console.log('hello')}>
-      <i class="fas fa-sync-alt"></i>
-      </button>
       <Grid container justifyContent={"center"}>
         <Grid item xs={10} md={10} className={"flex-col-scroll"}>
           <Paper style={{ overflowX: "auto" }}>
@@ -57,12 +68,13 @@ const list = array.map(each => {
               <TableHead>
                 <TableRow>
 
-                  <TableHeader align="center">Total Balance&nbsp;($)</TableHeader>
-                  <TableHeader align="center">Investments&nbsp;($)</TableHeader>
+                  <TableHeader align="center">Symbol</TableHeader>
+                  <TableHeader align="center">Price</TableHeader>
+                  <TableHeader align="center">Change</TableHeader>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {list}
+                {list.length > 0 && list}
               </TableBody>
             </Table>
           </Paper>

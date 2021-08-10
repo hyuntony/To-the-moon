@@ -131,7 +131,7 @@ router.post('/buy', async (req, res) => {
          user1.holdings.set(symbol, user1.holdings.get(symbol) + quantity)
       }
       user1.save(() => {
-         return res.json('order executed!')
+         return res.json(user1)
       })
    })
 });
@@ -159,11 +159,14 @@ router.post('/sell', async (req, res) => {
    order.save((err) => {
       if (err) return res.status(500).json(err);
       user1.balance = user1.balance + (price * quantity)
-
-      user1.holdings.set(symbol, user1.holdings.get(symbol) - quantity)
+      // if (user1.holdings.get(symbol) === quantity) {
+      //    user1.holdings.
+      // } else {
+         user1.holdings.set(symbol, user1.holdings.get(symbol) - quantity)
+      // }
       
       user1.save(() => {
-         return res.json('order executed!')
+         return res.json(user1)
       })
    })
 });

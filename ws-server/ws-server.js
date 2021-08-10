@@ -12,7 +12,7 @@ const socket = new WebSockets(`wss://ws.finnhub.io?token=${process.env.FINNHUB_K
 
 // unsubscribe the symbol from finn websocket
 const unsubscribe = function(symbol) {
-  socket.send(JSON.stringify({'type':'unsubscribe-news','symbol': symbol}));
+  socket.send(JSON.stringify({'type':'unsubscribe','symbol': symbol}));
 };
 
 // Initialize server
@@ -45,7 +45,7 @@ wss.on('connection', function(ws) {
     });
   });
   ws.on('close', function(ws) {
-    console.log('connection closed');
+    console.log(`unsubscribed from ${symbol}`);
     unsubscribe(symbol);
   });
 });

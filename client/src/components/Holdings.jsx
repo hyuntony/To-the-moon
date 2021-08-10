@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Holdings({ user, totalPort, setTotalPort }) {
+export default function Holdings({ user, totalPort, setTotalPort, update }) {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
   const totPort = totalPort
@@ -36,7 +36,7 @@ export default function Holdings({ user, totalPort, setTotalPort }) {
       headerName: "Avg Price",
       type: "number",
       width: 120,
-      valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
+      valueFormatter: ({ value }) => value? `$${value.toFixed(2)}`: 0,
     },
     {
       field: "currentPrice",
@@ -77,34 +77,37 @@ export default function Holdings({ user, totalPort, setTotalPort }) {
       ])
         .then((all) => {
           const [quote, average] = all;
-          setTotalPort((prev) => {
-            return prev + (quote.data.c * user.holdings[symbol])
-          })
+          if (quote.data.c) {
+            setTotalPort((prev) => {
+              return prev + (quote.data.c * user.holdings[symbol])
+            })
+          }
           const row = {
             id: symbol,
             name: symbol,
             quantity: user.holdings[symbol],
             avgPrice: average.data,
-            currentPrice: quote.data.c,
+            currentPrice: quote.data.c ? quote.data.c : 0,
             gainLoss: (quote.data.c - average.data) * user.holdings[symbol],
             mrkValue: (quote.data.c * user.holdings[symbol]),
             percentage: (quote.data.c * user.holdings[symbol])
           }
           setRows(prev => [...prev, row])
         })
+        .catch((err) => console.log(err))
     }
 
     return () => {
       setRows([]);
       setTotalPort(0);
     }
-  },[])
+  }, [update])
 
   return (
     <div>
       <h4 className="holdings-title">Holdings</h4>
       <div style={{ height: 400, width: "100%" }} className={classes.root}>
-        <DataGrid
+        {rows.length > 0 && <DataGrid
           rows={rows}
           columns={columns}
           getCellClassName={(params) => {
@@ -113,7 +116,7 @@ export default function Holdings({ user, totalPort, setTotalPort }) {
             }
             return Number(params.value) <= 0 ? "red" : "";
           }}
-        />
+        />}
       </div>
     </div>
   );

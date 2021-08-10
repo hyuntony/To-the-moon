@@ -43,10 +43,10 @@ const Breakdown = ({ user, price, setPrice }) => {
     };
     socket.onmessage = function (event) {
       setPrice(event.data);
-      console.log(event.data);
     };
     return () => {
       socket.close();
+      console.log('unmount')
     };
   }, [url]);
 
