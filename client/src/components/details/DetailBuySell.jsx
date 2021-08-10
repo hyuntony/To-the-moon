@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { useParams } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
@@ -8,32 +7,36 @@ import Popup from "./Popup";
 
 const DetailBuySell = ({ user, price, setUser }) => {
   const userId = user._id;
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("");
   const { symbol } = useParams();
   const [added, setAdded] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(0);
+  const [errorMess, setErrorMess] = useState(""); 
 
   const togglePopup = (e) => {
     setIsOpen(!isOpen);
     setMessage(e);
   };
+
   useEffect(() => {
-    axios.get(`/api/watchlist/${userId}/${symbol}`).then((res) => {
-      if (res.data !== null) {
-        setAdded(1);
-      }
-    });
+    axios.get(`/api/watchlist/${userId}/${symbol}`)
+        .then((res) => {
+            if (res.data !== null) {
+            setAdded(1);
+            }
+        });
   }, []);
-  const addWatchlist = () => {
+
+    const addWatchlist = () => {
     axios
-      .post(`/api/watchlist`, { symbol, user })
-      // .then((res) => {console.log(res.data)})
-      .then(() => {
-        setAdded(1);
-      });
+        .post(`/api/watchlist`, { symbol, user })
+        .then(() => {
+            setAdded(1);
+        });
   };
+
   const removeWatchlist = () => {
     axios
       .post(`/api/watchlist/delete`, { symbol, user })
@@ -55,34 +58,32 @@ const DetailBuySell = ({ user, price, setUser }) => {
       const action = "buy";
       axios
         .post(`/api/buy`, {
-          symbol: symbol,
-          quantity: Number(value),
-          action: action,
-          user,
-          price: price,
+            symbol: symbol,
+            quantity: Number(value),
+            action: action,
+            user,
+            price: price,
         })
-        // .then(()=> {togglePopup(`Purchased ${value} Stocks`)})
         .then((res) => {
-            console.log('userData:', res.data)
-            console.log('setUser', setUser)
             setUser(res.data);
         })
         .then((res) => {
-          togglePopup();
+            togglePopup();
         })
         .catch((err) => {
-          setIsOpen(!isOpen);
-          console.log(err.response.data);
+            setIsOpen(!isOpen);
+            setErrorMess(err.response.data);
         });
-      // .then(() => console.log(`Buy: ${value} ${symbol} Stock!`))
     }
   };
+
   const sellOnClick = () => {
     if (value.length > 0 && value > 0) {
       setStatus(1);
       togglePopup(`Sell ${value} stock at ${price}?`);
     }
   };
+
   const confirmSell = () => {
     if (value.length > 0 && value > 0) {
       const action = "sell";
@@ -94,7 +95,6 @@ const DetailBuySell = ({ user, price, setUser }) => {
           user,
           price: price,
         })
-        // .then(()=> {togglePopup(`Sold ${value} Stocks`)})
         .then((res) => {
           setUser(res.data);
         })
@@ -103,9 +103,8 @@ const DetailBuySell = ({ user, price, setUser }) => {
         })
         .catch((err) => {
           setIsOpen(!isOpen);
-          console.log(err.response.data);
+          setErrorMess(err.response.data);
         });
-      // .then(() => console.log(`Sell: ${value} ${symbol} Stock!`))
     }
   };
 
@@ -134,6 +133,7 @@ const DetailBuySell = ({ user, price, setUser }) => {
       );
     }
   };
+
   const whichButtonNow = () => {
     if (status === 0) {
       return <button onClick={confirmPurchase}>Confirm</button>;
@@ -141,15 +141,20 @@ const DetailBuySell = ({ user, price, setUser }) => {
       return <button onClick={confirmSell}>Confirm</button>;
     }
   };
+
   return (
     <div className="buy-sell-func">
+      {/* <div style={{color: 'red', marginRight: '10px'}}>{errorMess}</div>   */}
       <div className="details-buttons">
         <TextField
+          error={errorMess}
           id="outlined-basic"
           type="text"
           label="Quantity"
           variant="outlined"
+          value={value}
           onChange={(event) => setValue(event.target.value)}
+          helperText={errorMess ? errorMess : ""}
         />
       </div>
       <div className="details-buttons">
@@ -175,7 +180,11 @@ const DetailBuySell = ({ user, price, setUser }) => {
         >
           Buy
         </Button>
-        <Button variant="outlined" color="primary" onClick={sellOnClick}>
+        <Button 
+          variant="outlined" 
+          color="primary" 
+          onClick={sellOnClick}
+        >
           Sell
         </Button>
         {whichButton()}

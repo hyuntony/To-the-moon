@@ -38,7 +38,7 @@ const Home = ({user}) => {
       <Grid container spacing={3}>
         <Grid item xs={8}>
           <button onClick={onClick}>
-            <i class="fas fa-sync-alt"></i>
+            <i className="fas fa-sync-alt"></i>
           </button>
           <AccountInfo user={user} totalPort={totalPort} />
           <Holdings user={user} totalPort={totalPort} setTotalPort={setTotalPort} update={update} />

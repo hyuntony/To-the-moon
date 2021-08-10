@@ -66,6 +66,7 @@ const Logout = ({ user, login, logout }) => {
             {!user && (
               <li className="logout-item">
                 <Link
+                  to='/'
                   className="logout-links"
                   onClick={() => login("1@email.com")}
                 >
@@ -76,6 +77,7 @@ const Logout = ({ user, login, logout }) => {
             {!user && (
               <li className="logout-item">
                 <Link
+                  to='/'
                   className="logout-links"
                   onClick={() => login("2@email.com")}
                 >
@@ -86,6 +88,7 @@ const Logout = ({ user, login, logout }) => {
             {!user && (
               <li className="logout-item">
                 <Link
+                  to='/'
                   className="logout-links"
                   onClick={() => login("3@email.com")}
                 >

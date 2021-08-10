@@ -15,7 +15,7 @@ const Personal = ({ user }) => {
       .then((res) => {
         setPersonal({
           holding: res.data.holdings[symbol],
-          balance: res.data.balance,
+          balance: res.data.balance.toLocaleString(),
         });
       });
   }, [user]);
@@ -26,7 +26,7 @@ const Personal = ({ user }) => {
       <div className="details-personal">
         <div>
           <p>Current Holding: </p>
-          <p className="personal-text">{personal.holding} shares</p>
+          <p className="personal-text">{personal.holding ? personal.holding : 0} shares</p>
         </div>
         <div>
           <p>Current Balance: </p>

@@ -72,8 +72,12 @@ const Breakdown = ({ user, price, setPrice }) => {
   };
 
   const showPriceChange = () => {
-    const priceChange = ((price - state.quote.pc) / price) * 100;
-    return [(price - state.quote.pc).toFixed(2), priceChange.toFixed(2)];
+    if (state.quote) {
+      const priceChange = ((price - state.quote.pc) / price) * 100;
+      return [(price - state.quote.pc).toFixed(2), priceChange.toFixed(2)];
+    } else {
+      return [0, 0];
+    }
   };
 
   const color = (p) => {

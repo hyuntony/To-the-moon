@@ -46,25 +46,29 @@ const LineChart = () => {
   let url = window.location.pathname;
 
   useEffect(() => {
-    axios.get(`/finn/${symbol}/candles`).then((res) => {
-      const dateArray = res.data.t.map((number) => {
-        const date = new Date(number * 1000);
-        return date.toLocaleDateString("en-US");
-      });
+    axios.get(`/finn/${symbol}/candles`)
+      .then((res) => {
+        const dateArray = res.data.t.map((number) => {
+          const date = new Date(number * 1000);
+          return date.toLocaleDateString("en-US");
+        });
 
-      setData({
-        labels: dateArray,
-        datasets: [
-          {
-            label: "Price",
-            data: res.data.c,
-            fill: false,
-            backgroundColor: "rgb(255, 99, 132)",
-            borderColor: "red",
-          },
-        ],
-      });
-    });
+        setData({
+          labels: dateArray,
+          datasets: [
+            {
+              label: "Price",
+              data: res.data.c,
+              fill: false,
+              backgroundColor: "rgb(255, 99, 132)",
+              borderColor: "red",
+            },
+          ],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }, [url]);
 
   return (

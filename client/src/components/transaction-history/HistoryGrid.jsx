@@ -41,7 +41,6 @@ export default function DataGridDemo({user}) {
       width: 150,
       valueFormatter: ({value}) => `$${value.toFixed(2)}`
     },
-    { field: 'id', headerName: 'ID', width: 350 },
   ];
   
   const [rows, setRows] = useState([])
@@ -49,7 +48,6 @@ export default function DataGridDemo({user}) {
     axios.get(`/user/history/${user._id}`)
     .then((res)=>{
       for (const each of res.data) {
-        console.log(each._id)
         let newDate = new Date(each.createdAt)
         const row = {
           id: each._id,
@@ -74,7 +72,6 @@ export default function DataGridDemo({user}) {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={13}
       />
     </div>
   );

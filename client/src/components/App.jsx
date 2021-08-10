@@ -47,12 +47,6 @@ const App = () => {
             <Route path="/about">
               <About />
             </Route>
-            {/* <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route> */}
           </Switch>
         </main>
       </div>
