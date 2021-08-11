@@ -14,13 +14,12 @@ import "./AccountInfo.scss";
 
 const useStyles = makeStyles({
   root: {
-    boxShadow: "grey",
     padding: "0 30px",
     width: "96%",
     marginLeft: 30,
     backgroundColor: "white",
     "&:hover": {
-      backgroundColor: "grey",
+      backgroundColor: "#f5f5f5",
     },
   },
 });

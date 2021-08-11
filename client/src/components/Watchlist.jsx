@@ -9,10 +9,29 @@ import TableBody from "@material-ui/core/TableBody/TableBody";
 import Paper from "@material-ui/core/Paper/Paper";
 import Grid from "@material-ui/core/Grid/Grid";
 import { withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import "./Watchlist.scss";
 
 const Watchlist = ({ user, update }) => {
+  const useStyles = makeStyles({
+    root: {
+      padding: "0 30px",
+      width: "96%",
+      marginLeft: 30,
+      backgroundColor: "white",
+      "&:hover": {
+        backgroundColor: "#f5f5f5",
+      },
+    },
+    green: {
+      color: "green",
+    },
+    red: {
+      color: "red",
+    },
+  });
+
   const TableHeader = withStyles({
     root: {
       color: "black",
@@ -20,6 +39,7 @@ const Watchlist = ({ user, update }) => {
     },
   })(TableCell);
 
+  const classes = useStyles();
   const id = user._id;
   const [array, setArray] = useState([]);
 
@@ -52,7 +72,7 @@ const Watchlist = ({ user, update }) => {
     };
 
     return (
-      <TableRow key={each.config.url}>
+      <TableRow className={classes.root} key={each.config.url}>
         <TableCell>
           <Link
             className="symbol-link"
@@ -62,7 +82,7 @@ const Watchlist = ({ user, update }) => {
           </Link>
         </TableCell>
         <TableCell>${each.data === null ? 0 : each.data.c}</TableCell>
-        <TableCell>
+        <TableCell className={Number ? classes.red : classes.green}>
           ${each.data === null ? 0 : each.data.d}(
           {each.data === null ? 0 : each.data.dp}%)
         </TableCell>
