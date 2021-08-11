@@ -31,7 +31,7 @@ const SearchBar = ({ results, onSearch }) => {
           <div>({option === null ? "" : option.description})</div>
         </div>
       )}
-      onChange={(event, value) => handleClick(value.symbol)}
+      onChange={(event, value) => handleClick(value === null ? "" : value.symbol)}
       style={{ background: "white" }}
       onInputChange={(event) => setValue(event.target.value)}
       renderInput={(params) => (
