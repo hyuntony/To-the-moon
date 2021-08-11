@@ -8,8 +8,8 @@
 .our-team {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 30px;
 }
 
@@ -17,12 +17,13 @@
   box-shadow: 8px 8px 10px 1px rgba(0, 0, 0, 0.2);
   margin: 8px;
 }
+
 .about-us {
-  font-size: 80px;
+  font-size: 60px;
 }
 
 .about-section {
-  padding: 50px;
+  padding: 10px;
   text-align: center;
   background-color: #474e5d;
   color: white;
@@ -30,6 +31,11 @@
 
 .profile {
   width: 100%;
+}
+
+.our-name {
+  font-size: 25px;
+  padding-top: 5px;
 }
 
 .container {
@@ -45,11 +51,6 @@
 
 .title {
   color: grey;
-  margin-top: 10px;
-}
-
-.describe {
-  margin-top: 10px;
 }
 
 .email {
@@ -67,8 +68,6 @@
   text-align: center;
   cursor: pointer;
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .button:hover {

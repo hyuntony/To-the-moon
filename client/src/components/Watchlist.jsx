@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 import Table from "@material-ui/core/Table/Table";
 import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableRow from "@material-ui/core/TableRow/TableRow";
@@ -8,55 +9,86 @@ import TableBody from "@material-ui/core/TableBody/TableBody";
 import Paper from "@material-ui/core/Paper/Paper";
 import Grid from "@material-ui/core/Grid/Grid";
 import { withStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import "./Watchlist.scss";
 
 const Watchlist = ({ user, update }) => {
+  const useStyles = makeStyles({
+    root: {
+      padding: "0 30px",
+      width: "96%",
+      marginLeft: 30,
+      backgroundColor: "white",
+      "&:hover": {
+        backgroundColor: "#f5f5f5",
+      },
+    },
+    green: {
+      color: "green",
+    },
+    red: {
+      color: "red",
+    },
+  });
+
   const TableHeader = withStyles({
     root: {
       color: "black",
-      fontSize: 20,
+      fontSize: 13,
     },
   })(TableCell);
 
-  const id = user._id
-  const [array, setArray] = useState([])
+  const classes = useStyles();
+  const id = user._id;
+  const [array, setArray] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     let mounted = true;
-    console.log('running')
-    axios.get(`/api/watchlist/${id}`)
+    console.log("running");
+    axios
+      .get(`/api/watchlist/${id}`)
       .then((res) => {
         const promiseArray = res.data.map((each) => {
-          return axios.get(`/finn/${each.symbol}/quote`)
-        })
-        return Promise.all(promiseArray)
+          return axios.get(`/finn/${each.symbol}/quote`);
+        });
+        return Promise.all(promiseArray);
       })
       .then((array) => {
         if (mounted) {
           setArray(array);
         }
       })
-      .catch(err => console.log("error:", err))
+      .catch((err) => console.log("error:", err));
 
-    return () => mounted = false;
-  }, [update])
+    return () => (mounted = false);
+  }, [update]);
 
-  const list = array.map(each => {
+  const list = array.map((each) => {
     const clean = (url) => {
-      let cleanedUrl = url.replace("/finn/", "")
-      cleanedUrl = cleanedUrl.replace("/quote", "")
-      return cleanedUrl
+      let cleanedUrl = url.replace("/finn/", "");
+      cleanedUrl = cleanedUrl.replace("/quote", "");
+      return cleanedUrl;
     };
-    
+
     return (
-      <TableRow key={each.config.url}>
-        <TableCell>{clean(each.config.url)}</TableCell>
+      <TableRow className={classes.root} key={each.config.url}>
+        <TableCell>
+          <Link
+            className="symbol-link"
+            to={`/details/${clean(each.config.url)}`}
+          >
+            {clean(each.config.url)}
+          </Link>
+        </TableCell>
         <TableCell>${each.data === null ? 0 : each.data.c}</TableCell>
-        <TableCell>${each.data === null ? 0 : each.data.d}({each.data === null ? 0 : each.data.dp}%)</TableCell>
+        <TableCell className={Number ? classes.red : classes.green}>
+          ${each.data === null ? 0 : each.data.d}(
+          {each.data === null ? 0 : each.data.dp}%)
+        </TableCell>
       </TableRow>
-    )
-  })
+    );
+  });
 
   return (
     <div>
@@ -67,15 +99,12 @@ const Watchlist = ({ user, update }) => {
             <Table>
               <TableHead>
                 <TableRow>
-
                   <TableHeader align="center">Symbol</TableHeader>
                   <TableHeader align="center">Price</TableHeader>
                   <TableHeader align="center">Change</TableHeader>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {list.length > 0 && list}
-              </TableBody>
+              <TableBody>{list.length > 0 && list}</TableBody>
             </Table>
           </Paper>
         </Grid>

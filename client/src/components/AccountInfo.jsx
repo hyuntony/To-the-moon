@@ -14,11 +14,12 @@ import "./AccountInfo.scss";
 
 const useStyles = makeStyles({
   root: {
-    boxShadow: "grey",
     padding: "0 30px",
+    width: "96%",
+    marginLeft: 30,
     backgroundColor: "white",
     "&:hover": {
-      backgroundColor: "grey",
+      backgroundColor: "#f5f5f5",
     },
   },
 });
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
 const TableHeader = withStyles({
   root: {
     color: "black",
-    fontSize: 20,
+    fontSize: 13,
   },
 })(TableCell);
 
@@ -37,7 +38,7 @@ const createData = function (balance, investments, cash, date) {
 export default function AccountInfo({ user, totalPort }) {
   const classes = useStyles();
   const cashBalance = user.balance;
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const totPort = totalPort;
   const totBal = totPort + cashBalance;
 
@@ -66,8 +67,12 @@ export default function AccountInfo({ user, totalPort }) {
                 <TableCell align="center" component="th" scope="row">
                   ${row.balance.toLocaleString()}
                 </TableCell>
-                <TableCell align="center">${row.investments.toLocaleString()}</TableCell>
-                <TableCell align="center">${row.cash.toLocaleString()}</TableCell>
+                <TableCell align="center">
+                  ${row.investments.toLocaleString()}
+                </TableCell>
+                <TableCell align="center">
+                  ${row.cash.toLocaleString()}
+                </TableCell>
                 <TableCell align="center">${row.date}</TableCell>
               </TableRow>
             ))}
