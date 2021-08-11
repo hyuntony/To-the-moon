@@ -73,7 +73,7 @@ export default function AccountInfo({ user, totalPort }) {
                 <TableCell align="center">
                   ${row.cash.toLocaleString()}
                 </TableCell>
-                <TableCell align="center">${row.date}</TableCell>
+                <TableCell align="center">{row.date}</TableCell>
               </TableRow>
             ))}
           </TableBody>
