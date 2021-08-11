@@ -82,9 +82,9 @@ const Watchlist = ({ user, update }) => {
           </Link>
         </TableCell>
         <TableCell>${each.data === null ? 0 : each.data.c}</TableCell>
-        <TableCell className={Number ? classes.red : classes.green}>
-          ${each.data === null ? 0 : each.data.d}(
-          {each.data === null ? 0 : each.data.dp}%)
+        <TableCell className={each.data.d < 0 ? classes.red : classes.green}>
+          ${each.data === null ? 0 : each.data.d.toFixed(2)}(
+          {each.data === null ? 0 : each.data.dp.toFixed(2)}%)
         </TableCell>
       </TableRow>
     );
