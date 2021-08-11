@@ -1,13 +1,12 @@
 import React from "react";
 import HistoryGrid from "./transaction-history/HistoryGrid";
-import './History.scss'
-const History = ({user}) => {
+import "./History.scss";
+const History = ({ user }) => {
   return (
     <>
-    <HistoryGrid user={user}/>
+      <HistoryGrid user={user} />
     </>
-    )
-   
+  );
 };
 
 export default History;

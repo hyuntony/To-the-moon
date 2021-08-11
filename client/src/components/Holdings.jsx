@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import "./Holdings.scss";
 import axios from "axios";
 
-
 const useStyles = makeStyles({
   root: {
     "& .green": {
@@ -21,14 +20,19 @@ const useStyles = makeStyles({
 export default function Holdings({ user, totalPort, setTotalPort, update }) {
   const classes = useStyles();
   const [rows, setRows] = useState([]);
-  const totPort = totalPort
+  const totPort = totalPort;
 
   const columns = [
-    { field: "name", headerName: "Name", width: 120,
-    renderCell: (params) => (
-      <Link className='symbol-link' to={`/details/${params.value}`}>{params.value}</Link>
-    )
-  },
+    {
+      field: "name",
+      headerName: "Name",
+      width: 120,
+      renderCell: (params) => (
+        <Link className="symbol-link" to={`/details/${params.value}`}>
+          {params.value}
+        </Link>
+      ),
+    },
     {
       field: "quantity",
       headerName: "Quantity",
@@ -45,7 +49,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       disableColumnMenu: true,
       sortable: false,
       width: 120,
-      valueFormatter: ({ value }) => value? `$${value.toFixed(2)}`: 0,
+      valueFormatter: ({ value }) => (value ? `$${value.toFixed(2)}` : 0),
     },
     {
       field: "currentPrice",
@@ -89,14 +93,16 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
     for (const symbol in user.holdings) {
       Promise.all([
         axios.get(`/finn/${symbol}/quote`),
-        axios.get(`/api/average/${user._id}/${symbol}/${user.holdings[symbol]}`)
+        axios.get(
+          `/api/average/${user._id}/${symbol}/${user.holdings[symbol]}`
+        ),
       ])
         .then((all) => {
           const [quote, average] = all;
           if (quote.data.c) {
             setTotalPort((prev) => {
-              return prev + (quote.data.c * user.holdings[symbol])
-            })
+              return prev + quote.data.c * user.holdings[symbol];
+            });
           }
           const row = {
             id: symbol,
@@ -105,34 +111,36 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
             avgPrice: average.data,
             currentPrice: quote.data.c ? quote.data.c : 0,
             gainLoss: (quote.data.c - average.data) * user.holdings[symbol],
-            mrkValue: (quote.data.c * user.holdings[symbol]),
-            percentage: (quote.data.c * user.holdings[symbol])
-          }
-          setRows(prev => [...prev, row])
+            mrkValue: quote.data.c * user.holdings[symbol],
+            percentage: quote.data.c * user.holdings[symbol],
+          };
+          setRows((prev) => [...prev, row]);
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
     }
 
     return () => {
       setRows([]);
       setTotalPort(0);
-    }
-  }, [update])
+    };
+  }, [update]);
 
   return (
     <div>
       <h4 className="holdings-title">Holdings</h4>
       <div style={{ height: 400, width: "100%" }} className={classes.root}>
-        {rows.length > 0 && <DataGrid
-          rows={rows}
-          columns={columns}
-          getCellClassName={(params) => {
-            if (params.field === "gainLoss" && Number(params.value) >= 0) {
-              return "green";
-            }
-            return Number(params.value) <= 0 ? "red" : "";
-          }}
-        />}
+        {rows.length > 0 && (
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            getCellClassName={(params) => {
+              if (params.field === "gainLoss" && Number(params.value) >= 0) {
+                return "green";
+              }
+              return Number(params.value) <= 0 ? "red" : "";
+            }}
+          />
+        )}
       </div>
     </div>
   );

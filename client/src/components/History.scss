@@ -1,17 +1,19 @@
-  .holdings-grid {
-    font-size: 100px;
-    display: flex;
-    flex-direction: row;
-    padding: 50px 100px 100px 100px;
-  }
-.history-title {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+.orders-title {
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+  padding-left: 50px;
+  color: grey;
+  font-size: 20px;
+  text-decoration: none;
+  opacity: 0.5;
 }
 
-.symbol-link{
+.orders-title:hover {
+  color: grey;
+}
+
+.symbol-link {
   text-decoration: none;
   color: black;
 }

@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import axios from "axios";
+import { makeStyles } from "@material-ui/core";
+import { borderRight } from "@material-ui/system";
+
+const useStyles = makeStyles({
+  root: {
+    "& .grey": {
+      backgroundColor: "#f5f5f5",
+    },
+  },
+});
 
 export default function DataGridDemo({ user }) {
   const options = {
@@ -18,6 +28,8 @@ export default function DataGridDemo({ user }) {
     {
       field: "Symbol",
       headerName: "Symbol",
+      headerAlign: "right",
+      align: "right",
       width: 150,
       renderCell: (params) => (
         <Link className="symbol-link" to={`/details/${params.value}`}>
@@ -29,6 +41,8 @@ export default function DataGridDemo({ user }) {
       field: "Action",
       headerName: "Action",
       width: 150,
+      align: "right",
+      headerAlign: "right",
     },
     {
       field: "Price",
@@ -45,10 +59,11 @@ export default function DataGridDemo({ user }) {
     },
     {
       field: "Total",
-      headerName: "Total Cost",
+      headerName: "Value",
       type: "number",
       width: 150,
       valueFormatter: ({ value }) => `$${value.toLocaleString("en", options)}`,
+      align: "right",
     },
   ];
 
@@ -79,9 +94,30 @@ export default function DataGridDemo({ user }) {
     };
   }, []);
 
+  const classes = useStyles();
   return (
-    <div className="holdings-grid" style={{ height: 800, width: "100%" }}>
-      <DataGrid rows={rows} columns={columns} />
+    <div>
+      <a className="orders-title">Order History</a>
+      <div
+        className={classes.root}
+        style={{
+          height: 800,
+          width: "100%",
+          paddingBottom: 50,
+          paddingLeft: 50,
+          paddingRight: 50,
+        }}
+      >
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          getCellClassName={(params) => {
+            if (params.field === "Action" && params.value === "sell") {
+              return "grey";
+            }
+          }}
+        />
+      </div>
     </div>
   );
 }
