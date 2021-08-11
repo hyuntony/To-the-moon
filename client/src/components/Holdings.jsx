@@ -26,7 +26,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
     {
       field: "name",
       headerName: "Name",
-      width: 120,
+      width: 110,
       renderCell: (params) => (
         <Link className="symbol-link" to={`/details/${params.value}`}>
           {params.value}
@@ -48,7 +48,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       type: "number",
       disableColumnMenu: true,
       sortable: false,
-      width: 120,
+      width: 100,
       valueFormatter: ({ value }) => (value ? `$${value.toFixed(2)}` : 0),
     },
     {
@@ -57,7 +57,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       type: "number",
       disableColumnMenu: true,
       sortable: false,
-      width: 120,
+      width: 110,
       valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
     },
     {
@@ -66,7 +66,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       type: "number",
       disableColumnMenu: true,
       sortable: false,
-      width: 150,
+      width: 160,
       valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
     },
     {
@@ -75,7 +75,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       type: "number",
       disableColumnMenu: true,
       sortable: false,
-      width: 150,
+      width: 130,
       valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
     },
     {
@@ -84,7 +84,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       disableColumnMenu: true,
       sortable: false,
       type: "number",
-      width: 150,
+      width: 115,
       valueFormatter: ({ value }) => `${((value / totPort) * 100).toFixed(2)}%`,
     },
   ];
@@ -128,7 +128,10 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
   return (
     <div>
       <h4 className="holdings-title">Holdings</h4>
-      <div style={{ height: 400, width: "100%" }} className={classes.root}>
+      <div
+        style={{ height: 400, width: "100%", paddingLeft: 30 }}
+        className={classes.root}
+      >
         {rows.length > 0 && (
           <DataGrid
             rows={rows}

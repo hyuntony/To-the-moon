@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = ({user}) => {
+const Home = ({ user }) => {
   const [totalPort, setTotalPort] = useState(0);
   const [update, setUpdate] = useState(0);
   const classes = useStyles();
@@ -41,7 +41,12 @@ const Home = ({user}) => {
             <i className="fas fa-sync-alt"></i>
           </button>
           <AccountInfo user={user} totalPort={totalPort} />
-          <Holdings user={user} totalPort={totalPort} setTotalPort={setTotalPort} update={update} />
+          <Holdings
+            user={user}
+            totalPort={totalPort}
+            setTotalPort={setTotalPort}
+            update={update}
+          />
         </Grid>
         <Grid item xs={4}>
           <Watchlist user={user} update={update} />
