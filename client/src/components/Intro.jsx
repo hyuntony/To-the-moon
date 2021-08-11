@@ -10,8 +10,10 @@ const Intro = () => {
     <div className="intro-container">
       <Video />
       <div className="overlay">
-        <h1>To The Moon!</h1>
-        <p>Insert Slogan/Motto/Mission</p>
+        <h1 className="intro-title">To The Moon!</h1>
+        <p className="intro-slogan">
+          A powerful financial tool to help you learn how to invest your money
+        </p>
         <div className="intro-btns">
           <Button
             className="btns"
