@@ -8,7 +8,8 @@ const Personal = ({ user }) => {
     holding: 0,
     balance: 0,
   });
-  // const [balance, setBalance]=useState(0)
+  let url = window.location.pathname;
+
   const email = user.email;
   useEffect(() => {
     axios.get("/user/user", { email })
@@ -18,7 +19,7 @@ const Personal = ({ user }) => {
           balance: res.data.balance.toLocaleString(),
         });
       });
-  }, [user]);
+  }, [user, url]);
   
   return (
     <div>
