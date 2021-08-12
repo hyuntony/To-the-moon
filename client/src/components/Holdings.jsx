@@ -22,6 +22,11 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
   const [rows, setRows] = useState([]);
   const totPort = totalPort;
 
+  const options = {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  };
+
   const columns = [
     {
       field: "name",
@@ -49,7 +54,8 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       disableColumnMenu: true,
       sortable: false,
       width: 100,
-      valueFormatter: ({ value }) => (value ? `$${value.toFixed(2)}` : 0),
+      valueFormatter: ({ value }) =>
+        value ? `$${value.toLocaleString("en", options)}` : 0,
     },
     {
       field: "currentPrice",
@@ -58,7 +64,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       disableColumnMenu: true,
       sortable: false,
       width: 110,
-      valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
+      valueFormatter: ({ value }) => `$${value.toLocaleString("en", options)}`,
     },
     {
       field: "gainLoss",
@@ -67,7 +73,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       disableColumnMenu: true,
       sortable: false,
       width: 160,
-      valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
+      valueFormatter: ({ value }) => `$${value.toLocaleString("en", options)}`,
     },
     {
       field: "mrkValue",
@@ -76,7 +82,7 @@ export default function Holdings({ user, totalPort, setTotalPort, update }) {
       disableColumnMenu: true,
       sortable: false,
       width: 130,
-      valueFormatter: ({ value }) => `$${value.toFixed(2)}`,
+      valueFormatter: ({ value }) => `$${value.toLocaleString("en", options)}`,
     },
     {
       field: "percentage",
